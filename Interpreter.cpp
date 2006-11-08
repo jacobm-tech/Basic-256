@@ -15,7 +15,6 @@
  **  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  **/
 
-
 using namespace std;
 #include <iostream>
 #include <stdlib.h>
@@ -779,6 +778,7 @@ Interpreter::execByteCode()
 	    char **array = vars[*i].value.arr->data.sdata;
 	    stack.push(array[index]);
 	  }
+	delete temp;
       }
       break;
 
