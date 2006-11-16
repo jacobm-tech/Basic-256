@@ -1,0 +1,29 @@
+clg
+
+dim test(10)
+
+test[0] = 10
+test[1] = 80
+test[2] = 20
+test[3] = 10
+test[4] = 80
+test[5] = 30
+
+colour blue
+poly test, 3
+
+pause 1
+
+test[6] = 90
+test[7] = 70
+
+colour red
+poly test, 4
+
+pause 1
+
+test[8] = 80
+test[9] = 100
+
+colour green
+poly test, 5
