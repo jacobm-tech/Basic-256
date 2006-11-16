@@ -210,7 +210,7 @@
 %}
 
 %token PRINT INPUT KEY 
-%token PLOT CIRCLE RECT LINE FASTGRAPHICS REFRESH CLS CLG
+%token PLOT CIRCLE RECT POLY LINE FASTGRAPHICS REFRESH CLS CLG
 %token IF THEN FOR TO STEP NEXT 
 %token GOTO GOSUB RETURN REM END SETCOLOR
 %token GTE LTE NE
@@ -399,6 +399,9 @@ circlestmt: CIRCLE floatexpr ',' floatexpr ',' floatexpr { addOp(OP_CIRCLE); }
 ;
 
 circlestmt: RECT floatexpr ',' floatexpr ',' floatexpr ',' floatexpr { addOp(OP_RECT); }
+;
+
+circlestmt: POLY VARIABLE ',' floatexpr { addIntOp(OP_POLY, $2); }
 ;
 
 inputstmt: inputexpr ',' STRINGVAR  { addIntOp(OP_STRINGASSIGN, $3); }

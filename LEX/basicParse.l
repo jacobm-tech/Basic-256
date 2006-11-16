@@ -76,6 +76,7 @@ step  [Ss][Tt][Ee][Pp]
 plot  [Pp][Ll][Oo][Tt]
 circle [Cc][Ii][Rr][Cc][Ll][Ee]
 rect  [Rr][Ee][Cc][Tt]
+poly  [Pp][Oo][Ll][Yy]
 line  [Ll][Ii][Nn][Ee]
 fastgraphics [Ff][Aa][Ss][Tt][Gg][Rr][Aa][Pp][Hh][Ii][Cc][Ss]
 refresh [Rr][Ee][Ff][Rr][Ee][Ss][Hh]
@@ -167,6 +168,7 @@ blankline ^{whitespace}*[\n]
 {plot}		{ return PLOT; }
 {circle}	{ return CIRCLE; }
 {rect}	        { return RECT; }
+{poly}		{ return POLY; }
 {line}	        { return LINE; }
 {fastgraphics}	{ return FASTGRAPHICS; }
 {refresh}	{ return REFRESH; }
