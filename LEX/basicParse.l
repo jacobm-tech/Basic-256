@@ -82,6 +82,7 @@ refresh [Rr][Ee][Ff][Rr][Ee][Ss][Hh]
 cls   [Cc][Ll][Ss]
 clg   [Cc][Ll][Gg]
 color [Cc][Oo][Ll][Oo][Rr]
+colour [Cc][Oo][Ll][Oo][Uu][Rr]
 clear [Cc][Ll][Ee][Aa][Rr]
 black [Bb][Ll][Aa][Cc][Kk]
 white [Ww][Hh][Ii][Tt][Ee]
@@ -168,6 +169,7 @@ blankline ^{whitespace}*[\n]
 {fastgraphics}	{ return FASTGRAPHICS; }
 {refresh}	{ return REFRESH; }
 {color}		{ return SETCOLOR; }
+{colour}	{ return SETCOLOR; }
 {clear}		{ yylval.number = 0; return COLOR; }
 {white}		{ yylval.number = 1; return COLOR; }
 {black}		{ yylval.number = 2; return COLOR; }
