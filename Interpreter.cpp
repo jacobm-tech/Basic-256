@@ -933,6 +933,23 @@ Interpreter::execByteCode()
       }
       break;
 
+    case OP_LENGTH:
+      {
+	op++;
+	stackval *temp = stack.pop();
+	if (temp->type == T_STRING)
+	  {
+	    stack.push((int) strlen((char *) temp->value.string));
+	  }
+	else
+	  {
+	    printError(tr("Illegal argument to length()"));
+	    return -1;
+	  }
+	delete temp;
+      }
+      break;
+
     case OP_SIN:
     case OP_COS:
     case OP_TAN:

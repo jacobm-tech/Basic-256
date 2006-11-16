@@ -97,6 +97,7 @@ gray  [Gg][Rr][AaEe][Yy]
 dark  [Dd][Aa][Rr][Kk]
 toint   [Ii][Nn][Tt]
 tostring [Ss][Tt][Rr][Ii][Nn][Gg]
+length  [Ll][Ee][Nn][Gg][Tt][Hh]
 ceil    [Cc][Ee][Ii][Ll]
 floor   [Ff][Ll][Oo][Oo][Rr]
 abs     [Aa][Bb][Ss]
@@ -146,6 +147,7 @@ blankline ^{whitespace}*[\n]
                   return STRING; }
 {toint}         { return TOINT; }
 {tostring}      { return TOSTRING; }
+{length}        { return LENGTH; }
 {ceil}          { return CEIL; }
 {floor}         { return FLOOR; }
 {abs}           { return ABS; }
