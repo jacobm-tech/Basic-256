@@ -212,6 +212,7 @@
 %token PRINT INPUT KEY 
 %token PLOT CIRCLE RECT POLY LINE FASTGRAPHICS REFRESH CLS CLG
 %token IF THEN FOR TO STEP NEXT 
+%token OPEN READ WRITE CLOSE
 %token GOTO GOSUB RETURN REM END SETCOLOR
 %token GTE LTE NE
 %token DIM NOP LABEL
@@ -463,6 +464,9 @@ floatexpr: '(' floatexpr ')' { $$ = $2; }
          | ABS '(' floatexpr ')' { addOp(OP_ABS); }
          | RAND { addOp(OP_RAND); }
          | PI { addFloatOp(OP_PUSHFLOAT, 3.14159265); }
+         | OPEN '(' stringexpr ',' stringexpr ')' { addOp(OP_OPEN); }
+         | WRITE '(' stringexpr ')' { addOp(OP_WRITE); }
+         | CLOSE { addOp(OP_CLOSE); }
 ;
 
 stringexpr: stringexpr '+' stringexpr     { addOp(OP_CONCAT); }
@@ -480,6 +484,7 @@ stringexpr: stringexpr '+' stringexpr     { addOp(OP_CONCAT); }
 		}
 	    }
           | TOSTRING '(' floatexpr ')' { addOp(OP_STRING); }
+          | READ { addOp(OP_READ); }
 ;
 
 

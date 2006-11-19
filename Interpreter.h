@@ -21,6 +21,7 @@
 #include <QPixmap>
 #include <QImage>
 #include <QThread>
+#include <stdio.h>
 
 enum run_status {R_STOPPED, R_RUNNING, R_INPUT, R_INPUTREADY, R_ERROR, R_PAUSED};
 enum b_type {T_INT, T_FLOAT, T_STRING, T_BOOL, T_ARRAY, T_STRARRAY, T_UNUSED};
@@ -139,6 +140,7 @@ class Interpreter : public QThread
   QImage *imask;
   variable vars[NUMVARS];
   Stack stack;
+  FILE *stream;
   unsigned char *op;
   frame *callstack;
   forframe *forstack;

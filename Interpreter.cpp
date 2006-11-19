@@ -19,6 +19,7 @@
 using namespace std;
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 #include <cmath>
 #include <string>
 #include <QPainter>
@@ -360,6 +361,7 @@ Interpreter::initialize()
   status = R_RUNNING;
   once = true;
   currentLine = 1;
+  stream = NULL;
 }
 
 
@@ -621,6 +623,106 @@ Interpreter::execByteCode()
 	      }
 	    delete temp;
 	  }
+      }
+      break;
+
+
+    case OP_OPEN:
+      {
+	op++;
+	stackval *mode = stack.pop();
+	stackval *name = stack.pop();
+
+	if (mode->type != T_STRING)
+	  {
+	    printError(tr("Illegal argument to open()"));
+	    return -1;
+	  }
+
+	if (name->type == T_STRING)
+	  {
+	    int error = 0;
+
+	    if (stream != NULL)
+	      {
+		fclose(stream);
+		stream = NULL;
+	      }
+
+	    char fmode[2] = "r";
+
+	    if ((strcmp(mode->value.string, "w") == 0) ||
+	 	(strcmp(mode->value.string, "write") == 0))
+	      strcpy(fmode, "w");
+
+	    stream = fopen(name->value.string, fmode);
+
+	    if (stream == NULL)
+	      error = -1;
+
+	    stack.push(error);
+	  }
+	else
+	  {
+	    printError(tr("Illegal argument to open()"));
+	    return -1;
+	  }
+	delete name;
+	delete mode;
+      }
+      break;
+
+    case OP_READ:
+      {
+	op++;
+	char strarray[64];
+	memset(strarray, 0, 63);
+
+	if (stream != NULL)
+	  fscanf(stream, "%63s ", strarray);
+
+	stack.push(strarray);
+      }
+      break;
+
+    case OP_WRITE:
+      {
+	op++;
+
+	stackval *temp = stack.pop();
+
+	if (temp->type == T_STRING)
+	  {
+	     int error = 0;
+
+	     if (stream != NULL)
+	       error = fprintf(stream, "%s ", temp->value.string);
+
+	     if (error > 0)
+	       error = 0;
+
+	     stack.push(error);
+	  }
+	else
+	  {
+	    printError(tr("Illegal argument to write()"));
+	    return -1;
+	  }
+	delete temp;
+      }
+      break;
+
+    case OP_CLOSE:
+      {
+        op++;
+
+	if (stream != NULL)
+	  {
+	     fclose(stream);
+	     stream = NULL;
+	  }
+
+	stack.push(0);
       }
       break;
 
@@ -1484,6 +1586,7 @@ Interpreter::execByteCode()
 	    waitCond.wait(&mutex);
 	    mutex.unlock();
 	  }
+	delete c;
       }
       break;
 

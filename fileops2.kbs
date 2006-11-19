@@ -1,0 +1,16 @@
+
+err = open("test", "read")
+if (err <> 0) then print "error: unable to open file" : end
+print "file: opened"
+
+loop:
+  str$ = read
+  if (str$ = "") then print "file: end of file found" : goto theend
+  print "token: " + str$
+  goto loop
+
+theend:
+  err = close
+  print "file: closed"
+
+

@@ -1,3 +1,9 @@
+2006-11-19    <fhendrikx@users.sourceforge.net>
+
+	* Added file operations "open", "read", "write", "close". The read and write functions work on a token basis. EOF is returned by returning an empty token.
+
+	* Added code to test new functions "fileops1.kbs" (and 2 and 3). 
+
 2006-11-17    <fhendrikx@users.sourceforge.net>
 
 	* Added string "length" function and sample code "length.kbs"

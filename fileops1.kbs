@@ -1,0 +1,13 @@
+
+err = open("test", "write")
+if (err <> 0) then print "error: unable to open file" : end
+print "file: opened"
+
+err = write("Token1")
+
+str$ = "Token2"
+err = write(str$)
+err = write(str$ + "_Token3")
+
+err = close
+print "file: closed"
