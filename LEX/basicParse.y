@@ -216,7 +216,8 @@
 %token GOTO GOSUB RETURN REM END SETCOLOR
 %token GTE LTE NE
 %token DIM NOP LABEL
-%token TOINT TOSTRING LENGTH CEIL FLOOR RAND SIN COS TAN ABS PI
+%token TOINT TOSTRING LENGTH MID INSTR
+%token CEIL FLOOR RAND SIN COS TAN ABS PI
 %token AND OR XOR NOT
 %token PAUSE
 
@@ -476,6 +477,7 @@ floatexpr: '(' floatexpr ')' { $$ = $2; }
          | TOINT '(' floatexpr ')' { addOp(OP_INT); }
          | TOINT '(' stringexpr ')' { addOp(OP_INT); }
          | LENGTH '(' stringexpr ')' { addOp(OP_LENGTH); }
+         | INSTR '(' stringexpr ',' stringexpr ')' { addOp(OP_INSTR); }
          | CEIL '(' floatexpr ')' { addOp(OP_CEIL); }
          | FLOOR '(' floatexpr ')' { addOp(OP_FLOOR); }
          | SIN '(' floatexpr ')' { addOp(OP_SIN); }
@@ -501,6 +503,7 @@ stringexpr: stringexpr '+' stringexpr     { addOp(OP_CONCAT); }
 		}
 	    }
           | TOSTRING '(' floatexpr ')' { addOp(OP_STRING); }
+          | MID '(' stringexpr ',' floatexpr ',' floatexpr ')' { addOp(OP_MID); }
           | READ { addOp(OP_READ); }
 ;
 
