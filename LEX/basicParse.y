@@ -299,6 +299,9 @@ statement: gotostmt
          | pausestmt
          | arrayassign
          | strarrayassign
+         | openstmt
+         | writestmt
+         | closestmt
 ;
 
 dimstmt: DIM VARIABLE '(' floatexpr ')'  { addIntOp(OP_DIM, $2); }
@@ -405,6 +408,18 @@ circlestmt: RECT floatexpr ',' floatexpr ',' floatexpr ',' floatexpr { addOp(OP_
 circlestmt: POLY VARIABLE ',' floatexpr { addIntOp(OP_POLY, $2); }
 ;
 
+openstmt: OPEN '(' stringexpr ')' { addOp(OP_OPEN); } 
+        | OPEN stringexpr         { addOp(OP_OPEN); }
+;
+
+writestmt: WRITE '(' stringexpr ')' { addOp(OP_WRITE); }
+         | WRITE stringexpr         { addOp(OP_WRITE); }
+;
+
+closestmt: CLOSE         { addOp(OP_CLOSE); }
+         | CLOSE '(' ')' { addOp(OP_CLOSE); }
+;
+
 inputstmt: inputexpr ',' STRINGVAR  { addIntOp(OP_STRINGASSIGN, $3); }
          | inputexpr ',' STRINGVAR '[' floatexpr ']'  { addIntOp(OP_STRARRAYINPUT, $3); }
 ;
@@ -464,9 +479,6 @@ floatexpr: '(' floatexpr ')' { $$ = $2; }
          | ABS '(' floatexpr ')' { addOp(OP_ABS); }
          | RAND { addOp(OP_RAND); }
          | PI { addFloatOp(OP_PUSHFLOAT, 3.14159265); }
-         | OPEN '(' stringexpr ',' stringexpr ')' { addOp(OP_OPEN); }
-         | WRITE '(' stringexpr ')' { addOp(OP_WRITE); }
-         | CLOSE { addOp(OP_CLOSE); }
 ;
 
 stringexpr: stringexpr '+' stringexpr     { addOp(OP_CONCAT); }

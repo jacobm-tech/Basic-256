@@ -630,37 +630,24 @@ Interpreter::execByteCode()
     case OP_OPEN:
       {
 	op++;
-	stackval *mode = stack.pop();
 	stackval *name = stack.pop();
-
-	if (mode->type != T_STRING)
-	  {
-	    printError(tr("Illegal argument to open()"));
-	    return -1;
-	  }
 
 	if (name->type == T_STRING)
 	  {
-	    int error = 0;
-
 	    if (stream != NULL)
 	      {
-		fclose(stream);
+		stream->close();
 		stream = NULL;
 	      }
 
-	    char fmode[2] = "r";
+	    stream = new QFile(name->value.string);
 
-	    if ((strcmp(mode->value.string, "w") == 0) ||
-	 	(strcmp(mode->value.string, "write") == 0))
-	      strcpy(fmode, "w");
 
-	    stream = fopen(name->value.string, fmode);
-
-	    if (stream == NULL)
-	      error = -1;
-
-	    stack.push(error);
+	    if (stream == NULL || !stream->open(QIODevice::ReadWrite | QIODevice::Text))
+	      {
+		printError(tr("Unable to open file"));
+		return -1;
+	      }
 	  }
 	else
 	  {
@@ -668,27 +655,65 @@ Interpreter::execByteCode()
 	    return -1;
 	  }
 	delete name;
-	delete mode;
       }
       break;
+
 
     case OP_READ:
       {
 	op++;
-	char strarray[64];
-	memset(strarray, 0, 63);
+	char c = ' ';
 
-	if (stream != NULL)
-	  fscanf(stream, "%63s ", strarray);
+	if (stream == NULL)
+	  {
+	    printError(tr("Can't read -- no open file."));
+	    return -1;
+	  }
 
-	stack.push(strarray);
+	//Remove leading whitespace
+	while (c == ' ' || c == '\t' || c == '\n')
+	  {
+	    if (!stream->getChar(&c))
+	      {
+		stack.push(strdup(""));
+		return 0;
+	      }
+	  }
+	
+	//put back non-whitespace character
+	stream->ungetChar(c);
+
+	//read token
+	int maxsize = 256;
+	int offset = 0; 
+	char * strarray = (char *) malloc(maxsize);
+	memset(strarray, 0, maxsize);
+
+	while (stream->getChar(strarray + offset) && 
+	       *(strarray + offset) != ' ' && 
+	       *(strarray + offset) != '\t' && 
+	       *(strarray + offset) != '\n' && 
+	       *(strarray + offset) != 0)
+	  {
+	    offset++;
+	    if (offset >= maxsize)
+	      {
+		maxsize *= 2;
+		strarray = (char *) realloc(strarray, maxsize);
+		memset(strarray + offset, 0, maxsize - offset);
+	      }
+	  }
+	strarray[offset] = 0;
+
+	stack.push(strdup(strarray));
+	free(strarray);
       }
       break;
+
 
     case OP_WRITE:
       {
 	op++;
-
 	stackval *temp = stack.pop();
 
 	if (temp->type == T_STRING)
@@ -696,12 +721,19 @@ Interpreter::execByteCode()
 	     int error = 0;
 
 	     if (stream != NULL)
-	       error = fprintf(stream, "%s ", temp->value.string);
+	       {
+		 quint64 oldPos = stream->pos();
+		 stream->flush();
+		 stream->seek(stream->size());
+		 error = stream->write(temp->value.string, strlen(temp->value.string));
+		 stream->seek(oldPos);
+		 stream->flush();
+	       }
 
-	     if (error > 0)
-	       error = 0;
-
-	     stack.push(error);
+	     if (error == -1)
+	       {
+		 printError(tr("Unable to write to file"));
+	       }
 	  }
 	else
 	  {
@@ -712,17 +744,16 @@ Interpreter::execByteCode()
       }
       break;
 
+
     case OP_CLOSE:
       {
         op++;
 
 	if (stream != NULL)
 	  {
-	     fclose(stream);
-	     stream = NULL;
+	    stream->close();
+	    stream = NULL;
 	  }
-
-	stack.push(0);
       }
       break;
 
@@ -774,6 +805,7 @@ Interpreter::execByteCode()
 	delete one;
       }
       break;
+
 
     case OP_STRARRAYASSIGN:
       {
@@ -908,13 +940,13 @@ Interpreter::execByteCode()
 	else if (vars[*i].type == T_ARRAY)
 	  {
 	    char buffer[32];
-	    sprintf(buffer, "array(0x%08x)", (int) vars[*i].value.arr);
+	    sprintf(buffer, "array(0x%p)", vars[*i].value.arr);
 	    stack.push(buffer);
 	  }
 	else if (vars[*i].type == T_STRARRAY)
 	  {
 	    char buffer[32];
-	    sprintf(buffer, "string array(0x%08x)", (int) vars[*i].value.arr);
+	    sprintf(buffer, "string array(0x%p)", vars[*i].value.arr);
 	    stack.push(buffer);
 	  }
 	else 

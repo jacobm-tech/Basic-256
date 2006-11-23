@@ -25,12 +25,7 @@ using namespace std;
 #include <QDialog>
 #include <QLabel>
 
-#include "BasicWidget.h"
-#include "BasicOutput.h"
-#include "BasicEdit.h"
-#include "BasicGraph.h"
 #include "RunController.h"
-#include "GhostButton.h"
 #include "PauseButton.h"
 #include "DockWidget.h"
 #include "MainWindow.h"
@@ -38,15 +33,17 @@ using namespace std;
 MainWindow::MainWindow(QWidget * parent, Qt::WindowFlags f)
 :	QMainWindow(parent, f)
 {
-  	QWidget *centerWidget = new QWidget();
+  	QWidget * centerWidget = new QWidget();
 	centerWidget->setObjectName( "centerWidget" );
 	
-  	BasicEdit *editor = new BasicEdit(this);
+  	editor = new BasicEdit(this);
 	editor->setObjectName( "editor" );
-  	BasicOutput *output = new BasicOutput();
+
+  	output = new BasicOutput();
 	output->setObjectName( "output" );
 	output->setReadOnly(true);
-	BasicGraph *goutput = new BasicGraph(output);
+
+	goutput = new BasicGraph(output);
 	goutput->setObjectName( "goutput" );
    	goutput->setMinimumSize(300, 300);
 
@@ -62,15 +59,7 @@ MainWindow::MainWindow(QWidget * parent, Qt::WindowFlags f)
 	BasicWidget * goutputwgt = new BasicWidget();
 	goutputwgt->setViewWidget(goutput);
 	
-	RunController *rc = new RunController(this, editor, output, goutput, statusBar());
-  	GhostButton *run = new GhostButton(QObject::tr("Run"));
-  	run->setObjectName( "run" );
-  	PauseButton *pause = new PauseButton(QObject::tr("Pause"));
-  	pause->setObjectName( "pause" );
-  	GhostButton *stop = new GhostButton(QObject::tr("Stop"));
-  	stop->setObjectName( "stop" );
-  	GhostButton *step = new GhostButton(QObject::tr("Step"));
-  	step->setObjectName( "step" );
+	RunController *rc = new RunController(this);
 
 	QDialog *aboutdialog = new QDialog();
   	QLabel *aboutlabel = new QLabel(QObject::tr("<h2 align='center'>BASIC-256 -- Version 0.8</h2> \
@@ -90,9 +79,9 @@ MainWindow::MainWindow(QWidget * parent, Qt::WindowFlags f)
 	
 	// File menu
   	QMenu *filemenu = menuBar()->addMenu(QObject::tr("File"));
-  	QAction *newact = filemenu->addAction(QObject::tr("New"));
-  	QAction *openact = filemenu->addAction(QObject::tr("Open"));
-  	QAction *saveact = filemenu->addAction(QObject::tr("Save"));
+  	QAction *newact = filemenu->addAction(QIcon(":images/new.png"), QObject::tr("New"));
+  	QAction *openact = filemenu->addAction(QIcon(":images/open.png"), QObject::tr("Open"));
+  	QAction *saveact = filemenu->addAction(QIcon(":images/save.png"), QObject::tr("Save"));
   	QAction *saveasact = filemenu->addAction(QObject::tr("Save As"));
 	filemenu->addSeparator();
 	QAction *printact = filemenu->addAction(QObject::tr("Print"));
