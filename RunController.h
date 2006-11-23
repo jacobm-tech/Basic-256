@@ -26,13 +26,14 @@
 #include "BasicOutput.h"
 #include "BasicGraph.h"
 #include "Interpreter.h"
+#include "MainWindow.h"
 
 
 class RunController : public QObject
 {
   Q_OBJECT;
  public:
-  RunController(BasicEdit *, BasicOutput *, BasicGraph *, QStatusBar * = NULL);
+  RunController(MainWindow *);
 
  signals:
   void debugStarted();
@@ -62,8 +63,7 @@ class RunController : public QObject
   bool paused;
   run_status oldStatus;
   QString bytefilename;
+  MainWindow *mainwin;
 };
-
-
 
 #endif

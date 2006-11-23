@@ -73,15 +73,21 @@ for   [Ff][Oo][Rr]
 to    [Tt][Oo]
 next  [Nn][Ee][Xx][Tt]
 step  [Ss][Tt][Ee][Pp]
+open  [Oo][Pp][Ee][Nn]
+read  [Rr][Ee][Aa][Dd]
+write [Ww][Rr][Ii][Tt][Ee]
+close [Cc][Ll][Oo][Ss][Ee]
 plot  [Pp][Ll][Oo][Tt]
 circle [Cc][Ii][Rr][Cc][Ll][Ee]
 rect  [Rr][Ee][Cc][Tt]
+poly  [Pp][Oo][Ll][Yy]
 line  [Ll][Ii][Nn][Ee]
 fastgraphics [Ff][Aa][Ss][Tt][Gg][Rr][Aa][Pp][Hh][Ii][Cc][Ss]
 refresh [Rr][Ee][Ff][Rr][Ee][Ss][Hh]
 cls   [Cc][Ll][Ss]
 clg   [Cc][Ll][Gg]
 color [Cc][Oo][Ll][Oo][Rr]
+colour [Cc][Oo][Ll][Oo][Uu][Rr]
 clear [Cc][Ll][Ee][Aa][Rr]
 black [Bb][Ll][Aa][Cc][Kk]
 white [Ww][Hh][Ii][Tt][Ee]
@@ -96,6 +102,7 @@ gray  [Gg][Rr][AaEe][Yy]
 dark  [Dd][Aa][Rr][Kk]
 toint   [Ii][Nn][Tt]
 tostring [Ss][Tt][Rr][Ii][Nn][Gg]
+length  [Ll][Ee][Nn][Gg][Tt][Hh]
 ceil    [Cc][Ee][Ii][Ll]
 floor   [Ff][Ll][Oo][Oo][Rr]
 abs     [Aa][Bb][Ss]
@@ -145,6 +152,7 @@ blankline ^{whitespace}*[\n]
                   return STRING; }
 {toint}         { return TOINT; }
 {tostring}      { return TOSTRING; }
+{length}        { return LENGTH; }
 {ceil}          { return CEIL; }
 {floor}         { return FLOOR; }
 {abs}           { return ABS; }
@@ -164,10 +172,12 @@ blankline ^{whitespace}*[\n]
 {plot}		{ return PLOT; }
 {circle}	{ return CIRCLE; }
 {rect}	        { return RECT; }
+{poly}		{ return POLY; }
 {line}	        { return LINE; }
 {fastgraphics}	{ return FASTGRAPHICS; }
 {refresh}	{ return REFRESH; }
 {color}		{ return SETCOLOR; }
+{colour}	{ return SETCOLOR; }
 {clear}		{ yylval.number = 0; return COLOR; }
 {white}		{ yylval.number = 1; return COLOR; }
 {black}		{ yylval.number = 2; return COLOR; }
@@ -194,6 +204,10 @@ blankline ^{whitespace}*[\n]
 {to}		{ return TO; }
 {step}		{ return STEP; }
 {next}		{ return NEXT; }
+{open}		{ return OPEN; }
+{read}		{ return READ; }
+{write}		{ return WRITE; }
+{close}		{ return CLOSE; }
 {input}         { return INPUT; }
 {key}           { return KEY; }
 {gosub}         { return GOSUB; }

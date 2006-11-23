@@ -210,12 +210,13 @@
 %}
 
 %token PRINT INPUT KEY 
-%token PLOT CIRCLE RECT LINE FASTGRAPHICS REFRESH CLS CLG
+%token PLOT CIRCLE RECT POLY LINE FASTGRAPHICS REFRESH CLS CLG
 %token IF THEN FOR TO STEP NEXT 
+%token OPEN READ WRITE CLOSE
 %token GOTO GOSUB RETURN REM END SETCOLOR
 %token GTE LTE NE
 %token DIM NOP LABEL
-%token TOINT TOSTRING CEIL FLOOR RAND SIN COS TAN ABS PI
+%token TOINT TOSTRING LENGTH CEIL FLOOR RAND SIN COS TAN ABS PI
 %token AND OR XOR NOT
 %token PAUSE
 
@@ -298,6 +299,9 @@ statement: gotostmt
          | pausestmt
          | arrayassign
          | strarrayassign
+         | openstmt
+         | writestmt
+         | closestmt
 ;
 
 dimstmt: DIM VARIABLE '(' floatexpr ')'  { addIntOp(OP_DIM, $2); }
@@ -401,6 +405,21 @@ circlestmt: CIRCLE floatexpr ',' floatexpr ',' floatexpr { addOp(OP_CIRCLE); }
 circlestmt: RECT floatexpr ',' floatexpr ',' floatexpr ',' floatexpr { addOp(OP_RECT); }
 ;
 
+circlestmt: POLY VARIABLE ',' floatexpr { addIntOp(OP_POLY, $2); }
+;
+
+openstmt: OPEN '(' stringexpr ')' { addOp(OP_OPEN); } 
+        | OPEN stringexpr         { addOp(OP_OPEN); }
+;
+
+writestmt: WRITE '(' stringexpr ')' { addOp(OP_WRITE); }
+         | WRITE stringexpr         { addOp(OP_WRITE); }
+;
+
+closestmt: CLOSE         { addOp(OP_CLOSE); }
+         | CLOSE '(' ')' { addOp(OP_CLOSE); }
+;
+
 inputstmt: inputexpr ',' STRINGVAR  { addIntOp(OP_STRINGASSIGN, $3); }
          | inputexpr ',' STRINGVAR '[' floatexpr ']'  { addIntOp(OP_STRARRAYINPUT, $3); }
 ;
@@ -451,6 +470,7 @@ floatexpr: '(' floatexpr ')' { $$ = $2; }
 	   }
          | TOINT '(' floatexpr ')' { addOp(OP_INT); }
          | TOINT '(' stringexpr ')' { addOp(OP_INT); }
+         | LENGTH '(' stringexpr ')' { addOp(OP_LENGTH); }
          | CEIL '(' floatexpr ')' { addOp(OP_CEIL); }
          | FLOOR '(' floatexpr ')' { addOp(OP_FLOOR); }
          | SIN '(' floatexpr ')' { addOp(OP_SIN); }
@@ -476,6 +496,7 @@ stringexpr: stringexpr '+' stringexpr     { addOp(OP_CONCAT); }
 		}
 	    }
           | TOSTRING '(' floatexpr ')' { addOp(OP_STRING); }
+          | READ { addOp(OP_READ); }
 ;
 
 

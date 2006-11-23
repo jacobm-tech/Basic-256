@@ -20,6 +20,12 @@
 #define __MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QAction>
+
+#include "BasicWidget.h"
+#include "BasicOutput.h"
+#include "BasicEdit.h"
+#include "BasicGraph.h"
 
 class MainWindow : public QMainWindow
 {
@@ -27,6 +33,13 @@ class MainWindow : public QMainWindow
 public:
   	MainWindow(QWidget * parent = 0, Qt::WindowFlags f = 0);
 	~MainWindow();
+	QAction * runact;
+	QAction * debugact;
+	QAction * stepact;
+	QAction * stopact;
+  	BasicEdit * editor;
+  	BasicOutput * output;
+	BasicGraph * goutput;
 };
 
 #endif

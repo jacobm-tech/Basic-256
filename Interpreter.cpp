@@ -19,13 +19,14 @@
 using namespace std;
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 #include <cmath>
 #include <string>
 #include <QPainter>
 #include <QTime>
 #include <QMutex>
 #include <QWaitCondition>
-#include "basicParse.tab.h"
+#include "LEX/basicParse.tab.h"
 #include "ByteCodes.h"
 #include "Interpreter.h"
 
@@ -360,6 +361,7 @@ Interpreter::initialize()
   status = R_RUNNING;
   once = true;
   currentLine = 1;
+  stream = NULL;
 }
 
 
@@ -625,6 +627,137 @@ Interpreter::execByteCode()
       break;
 
 
+    case OP_OPEN:
+      {
+	op++;
+	stackval *name = stack.pop();
+
+	if (name->type == T_STRING)
+	  {
+	    if (stream != NULL)
+	      {
+		stream->close();
+		stream = NULL;
+	      }
+
+	    stream = new QFile(name->value.string);
+
+
+	    if (stream == NULL || !stream->open(QIODevice::ReadWrite | QIODevice::Text))
+	      {
+		printError(tr("Unable to open file"));
+		return -1;
+	      }
+	  }
+	else
+	  {
+	    printError(tr("Illegal argument to open()"));
+	    return -1;
+	  }
+	delete name;
+      }
+      break;
+
+
+    case OP_READ:
+      {
+	op++;
+	char c = ' ';
+
+	if (stream == NULL)
+	  {
+	    printError(tr("Can't read -- no open file."));
+	    return -1;
+	  }
+
+	//Remove leading whitespace
+	while (c == ' ' || c == '\t' || c == '\n')
+	  {
+	    if (!stream->getChar(&c))
+	      {
+		stack.push(strdup(""));
+		return 0;
+	      }
+	  }
+	
+	//put back non-whitespace character
+	stream->ungetChar(c);
+
+	//read token
+	int maxsize = 256;
+	int offset = 0; 
+	char * strarray = (char *) malloc(maxsize);
+	memset(strarray, 0, maxsize);
+
+	while (stream->getChar(strarray + offset) && 
+	       *(strarray + offset) != ' ' && 
+	       *(strarray + offset) != '\t' && 
+	       *(strarray + offset) != '\n' && 
+	       *(strarray + offset) != 0)
+	  {
+	    offset++;
+	    if (offset >= maxsize)
+	      {
+		maxsize *= 2;
+		strarray = (char *) realloc(strarray, maxsize);
+		memset(strarray + offset, 0, maxsize - offset);
+	      }
+	  }
+	strarray[offset] = 0;
+
+	stack.push(strdup(strarray));
+	free(strarray);
+      }
+      break;
+
+
+    case OP_WRITE:
+      {
+	op++;
+	stackval *temp = stack.pop();
+
+	if (temp->type == T_STRING)
+	  {
+	     int error = 0;
+
+	     if (stream != NULL)
+	       {
+		 quint64 oldPos = stream->pos();
+		 stream->flush();
+		 stream->seek(stream->size());
+		 error = stream->write(temp->value.string, strlen(temp->value.string));
+		 stream->seek(oldPos);
+		 stream->flush();
+	       }
+
+	     if (error == -1)
+	       {
+		 printError(tr("Unable to write to file"));
+	       }
+	  }
+	else
+	  {
+	    printError(tr("Illegal argument to write()"));
+	    return -1;
+	  }
+	delete temp;
+      }
+      break;
+
+
+    case OP_CLOSE:
+      {
+        op++;
+
+	if (stream != NULL)
+	  {
+	    stream->close();
+	    stream = NULL;
+	  }
+      }
+      break;
+
+
     case OP_DIM:
     case OP_DIMSTR:
       {
@@ -672,6 +805,7 @@ Interpreter::execByteCode()
 	delete one;
       }
       break;
+
 
     case OP_STRARRAYASSIGN:
       {
@@ -806,13 +940,13 @@ Interpreter::execByteCode()
 	else if (vars[*i].type == T_ARRAY)
 	  {
 	    char buffer[32];
-	    sprintf(buffer, "array(0x%08x)", (int) vars[*i].value.arr);
+	    sprintf(buffer, "array(0x%p)", vars[*i].value.arr);
 	    stack.push(buffer);
 	  }
 	else if (vars[*i].type == T_STRARRAY)
 	  {
 	    char buffer[32];
-	    sprintf(buffer, "string array(0x%08x)", (int) vars[*i].value.arr);
+	    sprintf(buffer, "string array(0x%p)", vars[*i].value.arr);
 	    stack.push(buffer);
 	  }
 	else 
@@ -930,6 +1064,23 @@ Interpreter::execByteCode()
 	  }
 	int stime = (int) (val * 1000);
 	msleep(stime);
+      }
+      break;
+
+    case OP_LENGTH:
+      {
+	op++;
+	stackval *temp = stack.pop();
+	if (temp->type == T_STRING)
+	  {
+	    stack.push((int) strlen((char *) temp->value.string));
+	  }
+	else
+	  {
+	    printError(tr("Illegal argument to length()"));
+	    return -1;
+	  }
+	delete temp;
       }
       break;
 
@@ -1408,6 +1559,66 @@ Interpreter::execByteCode()
 	    waitCond.wait(&mutex);
 	    mutex.unlock();
 	  }
+      }
+      break;
+
+
+    case OP_POLY:
+      {
+	op++;
+	int *i = (int *) op;
+	op += sizeof(int);
+	stackval *c = stack.pop();
+
+	if (c->type != T_INT)
+	{
+	    printError(tr("Illegal argument to poly()"));
+	    return -1;
+	}
+
+	int pairs = c->value.intval;
+
+	if (vars[*i].type != T_ARRAY)
+	  {
+	    printError(tr("Illegal argument to poly()"));
+	    return -1;
+	  }
+
+	if (vars[*i].value.arr->size < (pairs * 2))
+	  {
+	    printError(tr("Not enough points in array for poly()"));
+	    return -1;
+	  }
+
+	double *array = vars[*i].value.arr->data.fdata;
+
+	QPointF points[pairs];
+
+	for (int j = 0; j < pairs; j++)
+	  {
+	    points[j].setX(array[j*2]);
+	    points[j].setY(array[(j*2)+1]);
+	  }
+
+	QPainter poly(image);
+	QPainter poly2(imask);
+        poly.setPen(pencolor);
+        poly.setBrush(pencolor);
+
+	poly.drawPolygon(points, pairs);
+	poly2.drawPolygon(points, pairs);
+
+	poly.end();
+	poly2.end();
+
+	if (!fastgraphics)
+	  {
+	    mutex.lock();
+	    emit(goutputReady());
+	    waitCond.wait(&mutex);
+	    mutex.unlock();
+	  }
+	delete c;
       }
       break;
 
