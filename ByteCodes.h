@@ -76,6 +76,7 @@
 #define OP_READ			0x36
 #define OP_WRITE		0x37
 #define OP_CLOSE		0x38
+#define OP_RESET		0x39
 
 
 //Int argument ops

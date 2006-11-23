@@ -758,6 +758,29 @@ Interpreter::execByteCode()
       break;
 
 
+    case OP_RESET:
+      {
+	op++;
+
+	if (stream == NULL)
+	  {
+	    printError(tr("reset() called when no file is open"));
+	    return -1;
+	  }
+	else
+	  {
+	    stream->close();
+
+	    if (!stream->open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text))
+	      {
+		printError(tr("Unable to reset file"));
+		return -1;
+	      }
+	  }
+      }
+      break;
+
+
     case OP_DIM:
     case OP_DIMSTR:
       {

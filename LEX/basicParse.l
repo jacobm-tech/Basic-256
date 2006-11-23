@@ -77,6 +77,7 @@ open  [Oo][Pp][Ee][Nn]
 read  [Rr][Ee][Aa][Dd]
 write [Ww][Rr][Ii][Tt][Ee]
 close [Cc][Ll][Oo][Ss][Ee]
+reset [Rr][Ee][Ss][Ee][Tt]
 plot  [Pp][Ll][Oo][Tt]
 circle [Cc][Ii][Rr][Cc][Ll][Ee]
 rect  [Rr][Ee][Cc][Tt]
@@ -208,6 +209,7 @@ blankline ^{whitespace}*[\n]
 {read}		{ return READ; }
 {write}		{ return WRITE; }
 {close}		{ return CLOSE; }
+{reset}		{ return RESET; }
 {input}         { return INPUT; }
 {key}           { return KEY; }
 {gosub}         { return GOSUB; }

@@ -212,7 +212,7 @@
 %token PRINT INPUT KEY 
 %token PLOT CIRCLE RECT POLY LINE FASTGRAPHICS REFRESH CLS CLG
 %token IF THEN FOR TO STEP NEXT 
-%token OPEN READ WRITE CLOSE
+%token OPEN READ WRITE CLOSE RESET
 %token GOTO GOSUB RETURN REM END SETCOLOR
 %token GTE LTE NE
 %token DIM NOP LABEL
@@ -302,6 +302,7 @@ statement: gotostmt
          | openstmt
          | writestmt
          | closestmt
+         | resetstmt
 ;
 
 dimstmt: DIM VARIABLE '(' floatexpr ')'  { addIntOp(OP_DIM, $2); }
@@ -418,6 +419,10 @@ writestmt: WRITE '(' stringexpr ')' { addOp(OP_WRITE); }
 
 closestmt: CLOSE         { addOp(OP_CLOSE); }
          | CLOSE '(' ')' { addOp(OP_CLOSE); }
+;
+
+resetstmt: RESET         { addOp(OP_RESET); }
+         | RESET '(' ')' { addOp(OP_RESET); }
 ;
 
 inputstmt: inputexpr ',' STRINGVAR  { addIntOp(OP_STRINGASSIGN, $3); }

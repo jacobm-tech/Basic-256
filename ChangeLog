@@ -1,3 +1,7 @@
+2006-11-24    <fhendrikx@users.sourceforge.net>
+
+	* Added file operation "reset".
+
 2006-11-20    <drblast@users.sourceforge.net>
 
 	* Interpreter.cpp (execByteCode): Merged file ops and changed them to work more simply.
