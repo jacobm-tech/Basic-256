@@ -191,8 +191,8 @@ MainWindow::MainWindow(QWidget * parent, Qt::WindowFlags f)
   	maintbar->addAction(copyact);
   	maintbar->addAction(pasteact);
 	
-  	gdock->setFeatures(gdock->features() ^ QDockWidget::DockWidgetClosable);
-  	tdock->setFeatures(tdock->features() ^ QDockWidget::DockWidgetClosable);
+  	gdock->setFeatures(QDockWidget::DockWidgetMovable);
+  	tdock->setFeatures(QDockWidget::DockWidgetMovable);
 
 	gdock->setWidget(goutputwgt);
   	gdock->setWindowTitle(QObject::tr("Graphics Output"));
