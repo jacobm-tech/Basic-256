@@ -6,7 +6,7 @@ cls
 clg
 refresh
 kt=50:m=4.0
-xmin=2.5:xmax=-1.0:ymin=-2.0:ymax=2.0
+xmin=2.1:xmax=-0.6:ymin=-1.5:ymax=1.5
 dx=(xmax-xmin)/300:dy=(ymax-ymin)/300
 
 for x=0 to 300

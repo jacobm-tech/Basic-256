@@ -26,6 +26,7 @@
 #include "BasicOutput.h"
 #include "BasicEdit.h"
 #include "BasicGraph.h"
+#include "VariableWin.h"
 
 class MainWindow : public QMainWindow
 {
@@ -40,6 +41,7 @@ public:
   	BasicEdit * editor;
   	BasicOutput * output;
 	BasicGraph * goutput;
+	VariableWin * vardock;
 };
 
 #endif

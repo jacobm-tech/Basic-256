@@ -56,6 +56,7 @@ RunController::RunController(MainWindow *mw)
   QObject::connect(i, SIGNAL(goToLine(int)), te, SLOT(goToLine(int)));
 
   QObject::connect(i, SIGNAL(highlightLine(int)), te, SLOT(highlightLine(int)));
+  QObject::connect(i, SIGNAL(varAssignment(QString, QString)), mainwin->vardock, SLOT(addVar(QString, QString)));
 }
 
 
