@@ -1949,7 +1949,10 @@ Interpreter::execByteCode()
 	    vars[*num].value.floatval = temp->value.floatval;
 	  } 
 	delete temp;
-	emit(varAssignment(QString(symtable[*num]), QString::number(vars[*num].value.floatval)));
+	if(debugMode)
+	  {
+	    emit(varAssignment(QString(symtable[*num]), QString::number(vars[*num].value.floatval)));
+	  }
       }
       break;
 
@@ -1971,7 +1974,10 @@ Interpreter::execByteCode()
 	    return -1;
 	  }
 	delete temp;
-	emit(varAssignment(QString(symtable[*num]), QString(vars[*num].value.string)));
+	if(debugMode)
+	  {
+	    emit(varAssignment(QString(symtable[*num]), QString(vars[*num].value.string)));
+	  }
       }
       break;
 
