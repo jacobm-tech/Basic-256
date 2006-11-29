@@ -78,6 +78,7 @@ RunController::startDebug()
       statusbar->showMessage(tr("Running"));
       goutput->setFocus();
       i->start();
+      mainwin->vardock->clearTable();
       mainwin->runact->setEnabled(false);
       mainwin->debugact->setEnabled(false);
       mainwin->stepact->setEnabled(true);
@@ -103,6 +104,7 @@ RunController::startRun()
       statusbar->showMessage(tr("Running"));
       goutput->setFocus();
       i->start();
+      mainwin->vardock->clearTable();
       mainwin->runact->setEnabled(false);
       mainwin->debugact->setEnabled(false);
       mainwin->stepact->setEnabled(false);
