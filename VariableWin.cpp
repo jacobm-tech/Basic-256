@@ -19,7 +19,7 @@
 #include <QHeaderView>
 
 VariableWin::VariableWin (QWidget * parent) 
-  :QDockWidget(QString("Variable Watch"), parent)
+  :QDockWidget(QString(tr("Variable Watch")), parent)
 {
   rows = 0;
   table = new QTableWidget(rows, 2, this);
