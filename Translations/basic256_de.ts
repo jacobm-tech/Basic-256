@@ -1,4 +1,5 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS><TS version="1.1" language="de">
 <context>
     <name>BasicEdit</name>
     <message>
@@ -204,10 +205,6 @@
         <translation>Schritt</translation>
     </message>
     <message>
-        <source>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.8&lt;/h2&gt;                                   &lt;p&gt;Copyright &amp;copy; 2006, Ian Larsen&lt;/p&gt;<byte value="x9"/>                                  &lt;p&gt;&lt;strong&gt;Thanks to our translators:&lt;/strong&gt; Immo-Gert Birn                                   &lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt;                                   with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt;                                   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</source>
-        <translation type="obsolete">&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.8&lt;/h2&gt;                                   &lt;p&gt;Copyright &amp;copy; 2006, Ian Larsen&lt;/p&gt;<byte value="x9"/>                                  &lt;p&gt;&lt;strong&gt;Dank an unsere Übersetzer:&lt;/strong&gt; Immo-Gert Birn                                   &lt;p&gt;&lt;i&gt;Mit diesem Programm sollten Sie eine Kopie der GNU General Public License&lt;br&gt;                                   erhalten haben; wenn nicht, schreiben Sie an die Free Software Foundation, Inc.,&lt;br&gt;                                   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</translation>
-    </message>
-    <message>
         <source>File</source>
         <translation>Datei</translation>
     </message>
@@ -338,12 +335,12 @@ Bitte die Drucker-Einstellungen überprüfen.</translation>
         <translation>Grafikfenster</translation>
     </message>
     <message>
-        <source>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, The BASIC-256 Team&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Please see the CONTRIBUTORS file for a list of developers and translators for this project.&lt;/p&gt;o<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>Variable Watch Window</source>
+        <translation>Variablenfenster</translation>
     </message>
     <message>
-        <source>Variable Watch Window</source>
-        <translation type="unfinished"></translation>
+        <source>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, The BASIC-256 Team&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Please see the CONTRIBUTORS file for a list of developers and translators for this project.&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>        &lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</source>
+        <translation>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, Das BASIC-256 Team&lt;/p&gt;<byte value="x9"/>&lt;p&gt;Bitte beachten Sie die CONTRIBUTORS-Datei für eine Liste der Entwickler&lt;br&gt;und Übersetzer dieses Projektes.&lt;/p&gt;<byte value="x9"/>&lt;p&gt;&lt;i&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem&lt;br&gt; <byte value="x9"/> Programm erhalten haben. Falls nicht, schreiben Sie an die Free Software&lt;br&gt; <byte value="x9"/>Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA.&lt;/i&gt;&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -371,6 +368,13 @@ Bitte die Drucker-Einstellungen überprüfen.</translation>
     <message>
         <source>Any File </source>
         <translation>Alle Dateien </translation>
+    </message>
+</context>
+<context>
+    <name>VariableWin</name>
+    <message>
+        <source>Variable Watch</source>
+        <translation>Variablen-Werte</translation>
     </message>
 </context>
 </TS>
