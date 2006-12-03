@@ -35,6 +35,7 @@ HEADERS			+=	ToolBar.h
 HEADERS			+=	ViewWidgetIFace.h
 HEADERS			+=	MainWindow.h
 HEADERS			+=	VariableWin.h
+HEADERS			+=	EditSyntaxHighlighter.h
 
 SOURCES 		+= 	LEX/lex.yy.c 
 SOURCES 		+= 	LEX/basicParse.tab.c 
@@ -52,3 +53,4 @@ SOURCES			+=	ToolBar.cpp
 SOURCES			+=	ViewWidgetIFace.cpp
 SOURCES			+=	MainWindow.cpp
 SOURCES			+=	VariableWin.cpp
+SOURCES			+=	EditSyntaxHighlighter.cpp

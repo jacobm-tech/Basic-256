@@ -62,7 +62,8 @@ MainWindow::MainWindow(QWidget * parent, Qt::WindowFlags f)
 	goutputwgt->setViewWidget(goutput);
 	
 	RunController *rc = new RunController(this);
-
+	editsyntax = new EditSyntaxHighlighter(editor->document());
+	
 	QDialog *aboutdialog = new QDialog();
   	QLabel *aboutlabel = new QLabel(QObject::tr("<h2 align='center'>BASIC-256 -- Version 0.9</h2> \
 					<p>Copyright &copy; 2006, The BASIC-256 Team</p>	\
