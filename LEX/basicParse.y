@@ -443,11 +443,9 @@ inputexpr: INPUT stringexpr { addOp(OP_PRINT);  addOp(OP_INPUT); }
 printstmt: PRINT stringexpr { addOp(OP_PRINTN); }
          | PRINT '(' stringexpr ')' { addOp(OP_PRINTN); }
          | PRINT floatexpr  { addOp(OP_PRINTN); }
-         | PRINT '(' floatexpr ')' { addOp(OP_PRINTN); }
          | PRINT stringexpr ';' { addOp(OP_PRINT); }
          | PRINT '(' stringexpr ')' ';' { addOp(OP_PRINT); }
          | PRINT floatexpr  ';' { addOp(OP_PRINT); }
-         | PRINT '(' floatexpr  ')' ';' { addOp(OP_PRINT); }
 ;
 
 floatexpr: '(' floatexpr ')' { $$ = $2; }
