@@ -102,7 +102,6 @@ void EditSyntaxHighlighter::initKeywords()
 		  << "\\b[Cc][Oo][Ll][Oo][Rr]\\b"			// color
 		  << "\\b[Cc][Oo][Ll][Oo][Uu][Rr]\\b"		// colour
 		  << "\\b[Cc][Ll][Ee][Aa][Rr]\\b"			// clear
-		  << "\\b[Dd][Aa][Rr][Kk]\\b"				// dark
 		  << "\\b[Ii][Nn][Tt]\\b"					// toint
 		  << "\\b[Ss][Tt][Rr][Ii][Nn][Gg]\\b"		// tostring
 		  << "\\b[Ll][Ee][Nn][Gg][Tt][Hh]\\b"		// length
@@ -137,17 +136,17 @@ void EditSyntaxHighlighter::initColors()
 
   m_colorFmt.setForeground(Qt::darkCyan);
   QStringList colorPatterns;
-	
-  colorPatterns 	<< "\\b[Bb][Ll][Aa][Cc][Kk]\\b"			// black
-			<< "\\b[Ww][Hh][Ii][Tt][Ee]\\b"			// white
-			<< "\\b[Rr][Ee][Dd]\\b"					// red
-			<< "\\b[Gg][Rr][Ee][Ee][Nn]\\b"			// green
-			<< "\\b[Bb][Ll][Uu][Ee]\\b"				// blue
-			<< "\\b[Cc][Yy][Aa][Nn]\\b"				// cyan
-			<< "\\b[Pp][Uu][Rr][Pp][Ll][Ee]\\b"		// purple
-			<< "\\b[Yy][Ee][Ll][Ll][Oo][Ww]\\b"		// yellow
-			<< "\\b[Oo][Rr][Aa][Nn][Gg][Ee]\\b"		// orange
-			<< "\\b[Gg][Rr][AaEe][Yy]\\b";			// gray
+  
+  colorPatterns << "\\b([Dd][Aa][Rr][Kk]){0,1}[Bb][Ll][Aa][Cc][Kk]\\b"			// black
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Ww][Hh][Ii][Tt][Ee]\\b"			// white
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Rr][Ee][Dd]\\b"					// red
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Gg][Rr][Ee][Ee][Nn]\\b"			// green
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Bb][Ll][Uu][Ee]\\b"				// blue
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Cc][Yy][Aa][Nn]\\b"				// cyan
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Pp][Uu][Rr][Pp][Ll][Ee]\\b"		// purple
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Yy][Ee][Ll][Ll][Oo][Ww]\\b"		// yellow
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Oo][Rr][Aa][Nn][Gg][Ee]\\b"		// orange
+		<< "\\b([Dd][Aa][Rr][Kk]){0,1}[Gg][Rr][AaEe][Yy]\\b";			// gray
 	
   for (QStringList::iterator it = colorPatterns.begin(); it != colorPatterns.end(); ++it )
     {
