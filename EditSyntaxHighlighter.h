@@ -34,28 +34,28 @@ protected:
     virtual void highlightBlock(const QString &text);
 
 private:
-	struct HighlightRule
+    struct HighlightRule
     {
-        QRegExp pattern;
-        QTextCharFormat format;
+      QRegExp pattern;
+      QTextCharFormat format;
     };
-	
-	typedef QVector< HighlightRule > VecHighlightRules;
-
+    
+    typedef QVector< HighlightRule > VecHighlightRules;
+    
     VecHighlightRules m_standardRules;
-	VecHighlightRules m_functionRules;
-
-	void initKeywords();
-	void initColors();
-	void initQuotes();
-	void initFunctions();
-	void initComments();
-		
-	QTextCharFormat m_keywordFmt;
-	QTextCharFormat m_colorFmt;
-	QTextCharFormat m_quoteFmt;
-	QTextCharFormat m_functionFmt;
-	QTextCharFormat m_commentFmt;
+    VecHighlightRules m_functionRules;
+    
+    void initKeywords();
+    void initColors();
+    void initQuotes();
+    void initFunctions();
+    void initComments();
+    
+    QTextCharFormat m_keywordFmt;
+    QTextCharFormat m_colorFmt;
+    QTextCharFormat m_quoteFmt;
+    QTextCharFormat m_functionFmt;
+    QTextCharFormat m_commentFmt;
 };
 
 #endif	// __EDITSYNTAXHIGHLIGHTER_H
