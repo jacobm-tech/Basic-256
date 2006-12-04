@@ -54,12 +54,12 @@
 <context>
     <name>Interpreter</name>
     <message>
-        <source>FOUT op lijn </source>
-        <translation>FEHLER in Zeile </translation>
+        <source>ERROR on line </source>
+        <translation>FOUT op lijn </translation>
     </message>
     <message>
         <source>Syntax error on line </source>
-        <translation>Syntax-Fehler in Zeile </translation>
+        <translation>Syntax fout op lijn </translation>
     </message>
     <message>
         <source>No such label</source>
@@ -75,7 +75,7 @@
     </message>
     <message>
         <source>Cannot assign non-string to string array</source>
-        <translation></translation>
+        <translation>Cannot assign non-string to string array</translation>
     </message>
     <message>
         <source>Array index out of bounds</source>
@@ -143,47 +143,47 @@
     </message>
     <message>
         <source>Can&apos;t read -- no open file.</source>
-        <translation>Lesen nicht möglich - im Moment ist keine Datei geöffnet.</translation>
+        <translation>Lezen nicht mogelijk - geen open bestand.</translation>
     </message>
     <message>
         <source>Unable to write to file</source>
-        <translation>Kann nicht in Datei schreiben</translation>
+        <translation>Kan niet in bestand schrijven</translation>
     </message>
     <message>
         <source>Illegal argument to write()</source>
-        <translation>Illegales Argument für Befehl write()</translation>
+        <translation>Illegal argument voor write()</translation>
     </message>
     <message>
         <source>Illegal argument to length()</source>
-        <translation>Illegales Argument für Befehl length()</translation>
+        <translation>Illegal argument voor length()</translation>
     </message>
     <message>
         <source>Illegal argument to poly()</source>
-        <translation>Illegales Argument für Befehl poly()</translation>
+        <translation>Illegal argument voor poly()</translation>
     </message>
     <message>
         <source>Not enough points in array for poly()</source>
-        <translation>Nicht genug Punkte im Feld für den poly()-Befehl </translation>
+        <translation>Niet genoeg punten in veld voor poly()</translation>
     </message>
     <message>
         <source>reset() called when no file is open</source>
-        <translation>reset() aufgerufen ohne dass eine Datei geöffnet ist</translation>
+        <translation>reset() gebruikt - maar er is geen bestand open</translation>
     </message>
     <message>
         <source>Unable to reset file</source>
-        <translation>Kann Datei nicht zurücksetzen (reset() nicht möglich)</translation>
+        <translation>reset() niet mogelijk</translation>
     </message>
     <message>
         <source>Illegal argument to mid()</source>
-        <translation>Illegales Argument für Befehl mid()</translation>
+        <translation>Illegal argument voor mid()</translation>
     </message>
     <message>
         <source>String not long enough for given starting character</source>
-        <translation>Zeichenkette nicht lang genug für das gegebenen Anfangs-Zeichen</translation>
+        <translation>String niet lang genoeg voor het gegeven karakter</translation>
     </message>
     <message>
         <source>Illegal argument to instr()</source>
-        <translation>Illegales Argument für instr()</translation>
+        <translation>Illegal argument voor instr()</translation>
     </message>
 </context>
 <context>
@@ -367,7 +367,7 @@ Check uw printer instelling.</translation>
     </message>
     <message>
         <source>Any File </source>
-        <translation>Alle Dateien </translation>
+        <translation>Alle bestanden </translation>
     </message>
 </context>
 <context>
