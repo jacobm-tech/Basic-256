@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de">
+<!DOCTYPE TS><TS>
 <context>
     <name>BasicEdit</name>
     <message>
@@ -375,6 +374,18 @@ Bitte die Drucker-Einstellungen überprüfen.</translation>
     <message>
         <source>Variable Watch</source>
         <translation>Variablen-Werte</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;array </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
