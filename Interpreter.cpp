@@ -585,6 +585,7 @@ Interpreter::execByteCode()
       }
       break;
 
+
     case OP_NEXT:
       {
 	op++;
