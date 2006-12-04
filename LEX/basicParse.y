@@ -513,6 +513,7 @@ stringexpr: stringexpr '+' stringexpr     { addOp(OP_CONCAT); }
 	    }
           | TOSTRING '(' floatexpr ')' { addOp(OP_STRING); }
           | MID '(' stringexpr ',' floatexpr ',' floatexpr ')' { addOp(OP_MID); }
+          | READ '(' ')' { addOp(OP_READ); }
           | READ { addOp(OP_READ); }
 ;
 
