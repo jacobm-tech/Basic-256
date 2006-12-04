@@ -549,6 +549,11 @@ Interpreter::execByteCode()
 	  {
 	    vars[*i].value.floatval = startnum->value.floatval;
 	  }
+
+	if(debugMode)
+	  {
+	    emit(varAssignment(QString(symtable[*i]), QString::number(vars[*i].value.floatval)));
+	  }
 	
 	if (endnum->type == T_INT)
 	  {
@@ -600,6 +605,12 @@ Interpreter::execByteCode()
 	double val = vars[*i].value.floatval;
 	val += temp->step;
 	vars[*i].value.floatval = val;
+
+	if(debugMode)
+	  {
+	    emit(varAssignment(QString(symtable[*i]), QString::number(vars[*i].value.floatval)));
+	  }
+
 	if (temp->step > 0 && val <= temp->endNum)
 	  {
 	    op = temp->returnAddr;

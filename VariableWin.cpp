@@ -15,6 +15,9 @@
  **  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  **/
 
+using namespace std;
+#include <iostream>
+
 #include "VariableWin.h"
 #include <QHeaderView>
 
@@ -22,11 +25,8 @@ VariableWin::VariableWin (QWidget * parent)
   :QDockWidget(QString(tr("Variable Watch")), parent)
 {
   rows = 0;
-  table = new QTableWidget(rows, 2, this);
+  table = new QTreeWidget(this);
   table->setColumnCount(2);
-  table->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-  table->horizontalHeader()->setVisible(false);
-  table->verticalHeader()->setVisible(false);
   setWidget(table);
 }
 
@@ -34,26 +34,26 @@ VariableWin::VariableWin (QWidget * parent)
 void
 VariableWin::addVar(QString name, QString value)
 {
-  QTableWidgetItem *nameItem = new QTableWidgetItem(name);
-  QTableWidgetItem *valueItem = new QTableWidgetItem(value);
+  QTreeWidgetItem *rowItem = new QTreeWidgetItem();
+  rowItem->setText(0, name);
+  rowItem->setText(1, value);
   for (unsigned int i = 0; i < rows; i++)
     {
-      if (table->item(i, 0)->text() == name)
+      QTreeWidgetItem *item = table->topLevelItem(i);
+      if (item->text(0) == name)
 	{
-	  table->setItem(i, 1, valueItem);
+	  item->setText(1, value);
 	  return;
 	}
     }
  
-  table->setRowCount(++rows);
-  table->setItem(rows - 1, 0, nameItem);
-  table->setItem(rows - 1, 1, valueItem);
+  table->insertTopLevelItem(rows, rowItem);
+  rows++;
 }
 
 void
 VariableWin::clearTable()
 {
   table->clear();
-  table->setRowCount(0);
   rows = 0;
 }
