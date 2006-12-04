@@ -27,29 +27,51 @@ VariableWin::VariableWin (QWidget * parent)
   rows = 0;
   table = new QTreeWidget(this);
   table->setColumnCount(2);
+  table->setHeaderLabels(QStringList() << tr("Name") << tr("Value"));
   setWidget(table);
 }
 
 
+
 void
-VariableWin::addVar(QString name, QString value)
+VariableWin::addVar(QString name, QString value, int arraylen)
 {
   QTreeWidgetItem *rowItem = new QTreeWidgetItem();
+
+  if (value != NULL && arraylen > -1)
+    {
+      name = name + "[" + QString::number(arraylen) + "]";
+    }
+  else if (value == NULL)
+    {
+      value = tr("<array ") + QString::number(arraylen) + ">";
+    }
   rowItem->setText(0, name);
   rowItem->setText(1, value);
-  for (unsigned int i = 0; i < rows; i++)
+
+  QList<QTreeWidgetItem *> list = table->findItems(name, Qt::MatchExactly | Qt::MatchRecursive, 0);
+
+  if (list.size() > 0)
     {
-      QTreeWidgetItem *item = table->topLevelItem(i);
-      if (item->text(0) == name)
-	{
-	  item->setText(1, value);
-	  return;
-	}
+      list[0]->setText(1, value);
+      return;
     }
+  
  
   table->insertTopLevelItem(rows, rowItem);
+  if (arraylen > 0)
+    {
+      for (int i = 0; i < arraylen; i++)
+	{
+	  QTreeWidgetItem *temp = new QTreeWidgetItem(rowItem);
+	  temp->setText(0, name + "[" + QString::number(i) + "]");
+	  temp->setText(1, "");
+	}
+    }
   rows++;
 }
+
+
 
 void
 VariableWin::clearTable()
