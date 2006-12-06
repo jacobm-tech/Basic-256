@@ -226,7 +226,7 @@
     </message>
     <message>
         <source>Exit</source>
-        <translation>Einden</translation>
+        <translation>Afsluiten</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -322,7 +322,6 @@ Please check your printer settings.</source>
         <translation>Kan niet afdrukken.
 Check uw printer instelling.</translation>
     </message>
-    </message>
     <message>
         <source>Text Window</source>
         <translation>Tekstvesnter</translation>
@@ -336,8 +335,8 @@ Check uw printer instelling.</translation>
         <translation>Variablenvenster</translation>
     </message>
     <message>
-        <source>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, The BASIC-256 Team&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Please see the CONTRIBUTORS file for a list of developers and translators for this project.&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>        &lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</source>
-        <translation>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, Het BASIC-256 Team&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Lees het bestand CONTRIBUTORS voor een lijst van developers en vertaalers voor dit project.&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>        &lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</translation>
+        <source>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9.1&lt;/h2&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, The BASIC-256 Team&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Please see the CONTRIBUTORS file for a list of developers and translators for this project.&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>        &lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</source>
+        <translation>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9.1&lt;/h2&gt; <byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, Het BASIC-256 Team&lt;/p&gt;<byte value="x9"/>&lt;p&gt;Lees alstublieft het CONTRIBUTORS bestand voor een lijst van de ontwikkelaars en vertalers van dit project.&lt;/p&gt;<byte value="x9"/>&lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
