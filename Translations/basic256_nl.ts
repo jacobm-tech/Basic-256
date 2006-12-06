@@ -83,7 +83,7 @@
     </message>
     <message>
         <source>Cannot access non-array variable</source>
-        <translation>Zugriff auf die Nicht-Feldvariable unmöglich</translation>
+        <translation>Cannot access non-array variable</translation>
     </message>
     <message>
         <source>Unknown variable</source>
@@ -91,35 +91,35 @@
     </message>
     <message>
         <source>Illegal argument to int()</source>
-        <translation>Illegal argument voor int()</translation>
+        <translation>Illegaal argument voor int()</translation>
     </message>
     <message>
         <source>Illegal argument to string()</source>
-        <translation>Illegal argument voor string()</translation>
+        <translation>Illegaal argument voor string()</translation>
     </message>
     <message>
         <source>Illegal argument to sin()</source>
-        <translation>Illegal argument voor sin()</translation>
+        <translation>Illegaal argument voor sin()</translation>
     </message>
     <message>
         <source>Illegal argument to cos()</source>
-        <translation>Illegal argument voor cos()</translation>
+        <translation>Illegaal argument voor cos()</translation>
     </message>
     <message>
         <source>Illegal argument to tan()</source>
-        <translation>Illegal argument voor tan()</translation>
+        <translation>Illegaal argument voor tan()</translation>
     </message>
     <message>
         <source>Illegal argument to ceil()</source>
-        <translation>Illegal argument voor ceil()</translation>
+        <translation>Illegaal argument voor ceil()</translation>
     </message>
     <message>
         <source>Illegal argument to floor()</source>
-        <translation>Illegal argument voor floor()</translation>
+        <translation>Illegaal argument voor floor()</translation>
     </message>
     <message>
         <source>Illegal argument to abs()</source>
-        <translation>Illegal argument voor abs()</translation>
+        <translation>Illegaal argument voor abs()</translation>
     </message>
     <message>
         <source>String in numeric expression</source>
@@ -139,7 +139,7 @@
     </message>
     <message>
         <source>Illegal argument to open()</source>
-        <translation>Illegal argument voor open()</translation>
+        <translation>Illegaal argument voor open()</translation>
     </message>
     <message>
         <source>Can&apos;t read -- no open file.</source>
@@ -151,15 +151,15 @@
     </message>
     <message>
         <source>Illegal argument to write()</source>
-        <translation>Illegal argument voor write()</translation>
+        <translation>Illegaal argument voor write()</translation>
     </message>
     <message>
         <source>Illegal argument to length()</source>
-        <translation>Illegal argument voor length()</translation>
+        <translation>Illegaal argument voor length()</translation>
     </message>
     <message>
         <source>Illegal argument to poly()</source>
-        <translation>Illegal argument voor poly()</translation>
+        <translation>Illegaal argument voor poly()</translation>
     </message>
     <message>
         <source>Not enough points in array for poly()</source>
@@ -175,7 +175,7 @@
     </message>
     <message>
         <source>Illegal argument to mid()</source>
-        <translation>Illegal argument voor mid()</translation>
+        <translation>Illegaal argument voor mid()</translation>
     </message>
     <message>
         <source>String not long enough for given starting character</source>
@@ -183,7 +183,7 @@
     </message>
     <message>
         <source>Illegal argument to instr()</source>
-        <translation>Illegal argument voor instr()</translation>
+        <translation>Illegaal argument voor instr()</translation>
     </message>
 </context>
 <context>
@@ -294,7 +294,7 @@
     </message>
     <message>
         <source>Print Text Output</source>
-        <translation>Textvenster afdrukken</translation>
+        <translation>Tekstvenster afdrukken</translation>
     </message>
     <message>
         <source>Print Graphics Output</source>
@@ -322,13 +322,10 @@ Please check your printer settings.</source>
         <translation>Kan niet afdrukken.
 Check uw printer instelling.</translation>
     </message>
-    <message>
-        <source>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, The BASIC-256 Team&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Please see the CONTRIBUTORS file for a list of developers and translators for this project.&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</source>
-        <translation type="obsolete">&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, Das BASIC-256 Team&lt;/p&gt;<byte value="x9"/>&lt;p&gt;Bitte beachten Sie die CONTRIBUTORS-Datei für eine Liste der Entwickler&lt;br&gt;und Übersetzer dieses Projektes.&lt;/p&gt;<byte value="x9"/>&lt;p&gt;&lt;i&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem&lt;br&gt; <byte value="x9"/> Programm erhalten haben. Falls nicht, schreiben Sie an die Free Software&lt;br&gt; <byte value="x9"/>Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA.&lt;/i&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Text Window</source>
-        <translation>Textvesnter</translation>
+        <translation>Tekstvesnter</translation>
     </message>
     <message>
         <source>Graphics Window</source>
@@ -340,7 +337,7 @@ Check uw printer instelling.</translation>
     </message>
     <message>
         <source>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, The BASIC-256 Team&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Please see the CONTRIBUTORS file for a list of developers and translators for this project.&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>        &lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</source>
-        <translation>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, Het BASIC-256 Team&lt;/p&gt;<byte value="x9"/>&lt;p&gt;Lees het CONTRIBUTORS bestand voor een lijst van de ontwikkelars en vertalers.&lt;/p&gt;<byte value="x9"/>&lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</translation>
+        <translation>&lt;h2 align=&apos;center&apos;&gt;BASIC-256 -- Version 0.9&lt;/h2&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Copyright &amp;copy; 2006, Het BASIC-256 Team&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>&lt;p&gt;Lees het bestand CONTRIBUTORS voor een lijst van developers en vertaalers voor dit project.&lt;/p&gt;<byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>        &lt;p&gt;&lt;i&gt;You should have received a copy of the GNU General Public License along&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>with this program; if not, write to the Free Software Foundation, Inc.,&lt;br&gt; <byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/><byte value="x9"/>51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.&lt;/i&gt;&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -374,7 +371,19 @@ Check uw printer instelling.</translation>
     <name>VariableWin</name>
     <message>
         <source>Variable Watch</source>
-        <translation>Variablen Blik</translation>
+        <translation>Variablenvenster</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>Waarde</translation>
+    </message>
+    <message>
+        <source>&lt;array </source>
+        <translation>&lt;veld </translation>
     </message>
 </context>
 </TS>
