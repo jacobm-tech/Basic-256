@@ -71,7 +71,7 @@
     </message>
     <message>
         <source>Array dimension too large</source>
-        <translation>Veld te groot</translation>
+        <translation>Array te groot</translation>
     </message>
     <message>
         <source>Cannot assign non-string to string array</source>
@@ -79,7 +79,7 @@
     </message>
     <message>
         <source>Array index out of bounds</source>
-        <translation>Veld index buiten</translation>
+        <translation>Array index buiten grens</translation>
     </message>
     <message>
         <source>Cannot access non-array variable</source>
@@ -127,11 +127,11 @@
     </message>
     <message>
         <source>Cannot compare strings with &gt; or &lt;=</source>
-        <translation></translation>
+        <translation>Kan strings niet met &gt; of &lt; verglijken</translation>
     </message>
     <message>
         <source>Cannot compare strings with &lt; or &gt;=</source>
-        <translation></translation>
+        <translation>Kan strings niet met &lt; of &gt; verglijken</translation>
     </message>
     <message>
         <source>Unable to open file</source>
@@ -163,7 +163,7 @@
     </message>
     <message>
         <source>Not enough points in array for poly()</source>
-        <translation>Niet genoeg punten in veld voor poly()</translation>
+        <translation>Niet genoeg punten in array voor poly()</translation>
     </message>
     <message>
         <source>reset() called when no file is open</source>
@@ -382,7 +382,7 @@ Check uw printer instelling.</translation>
     </message>
     <message>
         <source>&lt;array </source>
-        <translation>&lt;veld </translation>
+        <translation>&lt;array </translation>
     </message>
 </context>
 </TS>
