@@ -1614,10 +1614,10 @@ Interpreter::execByteCode()
 	    ian2.setPen(Qt::color1);
 	    ian2.setBrush(Qt::color1);
 	  }
-	if (x1val > 0 && y1val > 0)
+	if (x1val >= 0 && y1val >= 0)
 	  {
-	    ian.drawLine(x0val, y0val, x1val - 1, y1val - 1);
-	    ian2.drawLine(x0val, y0val, x1val - 1, y1val - 1);
+	    ian.drawLine(x0val, y0val, x1val, y1val);
+	    ian2.drawLine(x0val, y0val, x1val, y1val);
 	  }
 	ian.end();
 	ian2.end();
