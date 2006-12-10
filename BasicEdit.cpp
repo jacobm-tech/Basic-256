@@ -104,6 +104,7 @@ BasicEdit::newProgram()
     {
       clear();
       mainwin->setWindowTitle(tr("Untitled - BASIC-256"));
+      filename = "";
     }
 }
 

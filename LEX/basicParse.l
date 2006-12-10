@@ -67,6 +67,7 @@ return [Rr][Ee][Tt][Uu][Rr][Nn]
 if    [Ii][Ff]
 then  [Tt][Hh][Ee][Nn]
 rem   [Rr][Ee][Mm].*$
+remalt ;.*$
 dim   [Dd][Ii][Mm]
 end   [Ee][Nn][Dd]
 for   [Ff][Oo][Rr]
@@ -220,6 +221,7 @@ blankline ^{whitespace}*[\n]
 {return}        { return RETURN; }
 {pause}         { return PAUSE; }
 {rem}           { return '\n'; }
+{remalt}        { return '\n'; }
 {end}           { return END; }
 ">="            { return GTE; }
 "<="            { return LTE; }
