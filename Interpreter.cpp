@@ -1513,6 +1513,26 @@ Interpreter::execByteCode()
       }
       break;
 
+    case OP_SOUND:
+      {
+	op++;
+	stackval *temp = stack.pop();
+	
+	if (temp->type != T_STRING)
+	  {
+	    printError(tr("Sound file must be a string."));
+	    return -1;
+	  }
+	
+	QString filename = QString(temp->value.string);
+	emit(soundReady(filename));
+	delete temp;
+      }
+      break;
+	
+	
+
+
     case OP_SETCOLOR:
       {
 	op++;

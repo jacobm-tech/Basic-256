@@ -219,7 +219,7 @@
 %token TOINT TOSTRING LENGTH MID INSTR
 %token CEIL FLOOR RAND SIN COS TAN ABS PI
 %token AND OR XOR NOT
-%token PAUSE
+%token PAUSE SOUND
 
 %union 
 {
@@ -304,6 +304,7 @@ statement: gotostmt
          | writestmt
          | closestmt
          | resetstmt
+         | soundstmt
 ;
 
 dimstmt: DIM VARIABLE '(' floatexpr ')'  { addIntOp(OP_DIM, $2); }
@@ -335,7 +336,6 @@ ifexpr: IF compoundboolexpr
 	   byteOffset += sizeof(int);
          }
 ;
-
 
 compoundboolexpr: boolexpr
                 | compoundboolexpr AND compoundboolexpr {addOp(OP_AND); }
@@ -393,6 +393,10 @@ returnstmt: RETURN          { addOp(OP_RETURN); }
 
 colorstmt: SETCOLOR COLOR   { addIntOp(OP_SETCOLOR, $2); }
          | SETCOLOR '(' COLOR ')' { addIntOp(OP_SETCOLOR, $3); }
+;
+
+soundstmt: SOUND '(' stringexpr ')' { addOp(OP_SOUND); }
+         | SOUND stringexpr         { addOp(OP_SOUND); }
 ;
 
 plotstmt: PLOT floatexpr ',' floatexpr { addOp(OP_PLOT); }

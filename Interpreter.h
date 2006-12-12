@@ -132,6 +132,7 @@ class Interpreter : public QThread
   void inputNeeded();
   void clearText();
   void getKey();
+  void soundReady(QString soundfile);
   void goToLine(int);
   void highlightLine(int);
   void varAssignment(QString name, QString value, int arraylen);

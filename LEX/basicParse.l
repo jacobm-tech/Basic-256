@@ -120,6 +120,7 @@ or  [Oo][Rr]
 xor [Xx][Oo][Rr]
 not [Nn][Oo][Tt]
 pause [Pp][Aa][Uu][Ss][Ee]
+sound [Ss][Oo][Uu][Nn][Dd]
 integer [0-9]+
 floatnum [0-9]*\.?[0-9]*
 string \"[^\"\n]*\"
@@ -180,6 +181,7 @@ blankline ^{whitespace}*[\n]
 {rect}	        { return RECT; }
 {poly}		{ return POLY; }
 {line}	        { return LINE; }
+{sound}         { return SOUND; }
 {fastgraphics}	{ return FASTGRAPHICS; }
 {refresh}	{ return REFRESH; }
 {color}		{ return SETCOLOR; }

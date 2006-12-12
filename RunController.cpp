@@ -22,6 +22,7 @@ using namespace std;
 #include <QWaitCondition>
 #include <QFileDialog>
 #include <QFile>
+#include <QSound>
 
 #include "RunController.h"
 
@@ -55,10 +56,17 @@ RunController::RunController(MainWindow *mw)
 
   QObject::connect(i, SIGNAL(goToLine(int)), te, SLOT(goToLine(int)));
 
+  QObject::connect(i, SIGNAL(soundReady(QString)), this, SLOT(playSound(QString)));
+
   QObject::connect(i, SIGNAL(highlightLine(int)), te, SLOT(highlightLine(int)));
   QObject::connect(i, SIGNAL(varAssignment(QString, QString, int)), mainwin->vardock, SLOT(addVar(QString, QString, int)));
 }
 
+void
+RunController::playSound(QString soundfile)
+{
+  QSound::play(soundfile);
+}
 
 void
 RunController::startDebug()
