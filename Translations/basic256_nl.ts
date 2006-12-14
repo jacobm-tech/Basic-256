@@ -185,6 +185,10 @@
         <source>Illegal argument to instr()</source>
         <translation>Illegaal argument voor instr()</translation>
     </message>
+    <message>
+        <source>Sound file must be a string.</source>
+        <translation>Geluid bestand moet een string zijn.</translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
