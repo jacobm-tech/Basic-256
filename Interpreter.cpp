@@ -1713,15 +1713,6 @@ Interpreter::execByteCode()
 	op++;
 	int *i = (int *) op;
 	op += sizeof(int);
-	stackval *c = stack.pop();
-
-	if (c->type != T_INT)
-	{
-	    printError(tr("Illegal argument to poly()"));
-	    return -1;
-	}
-
-	int pairs = c->value.intval;
 
 	if (vars[*i].type != T_ARRAY)
 	  {
@@ -1729,7 +1720,9 @@ Interpreter::execByteCode()
 	    return -1;
 	  }
 
-	if (vars[*i].value.arr->size < (pairs * 2))
+	int pairs = vars[*i].value.arr->size / 2;
+
+	if (pairs < 3)
 	  {
 	    printError(tr("Not enough points in array for poly()"));
 	    return -1;
@@ -1763,7 +1756,6 @@ Interpreter::execByteCode()
 	    waitCond.wait(&mutex);
 	    mutex.unlock();
 	  }
-	delete c;
       }
       break;
 

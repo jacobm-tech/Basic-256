@@ -418,6 +418,8 @@ circlestmt: RECT floatexpr ',' floatexpr ',' floatexpr ',' floatexpr { addOp(OP_
 
 circlestmt: POLY VARIABLE ',' floatexpr { addIntOp(OP_POLY, $2); }
           | POLY '(' VARIABLE ',' floatexpr ')' { addIntOp(OP_POLY, $3); }
+          | POLY VARIABLE { addIntOp(OP_POLY, $2); }
+          | POLY '(' VARIABLE ')' { addIntOp(OP_POLY, $3); }
 ;
 
 openstmt: OPEN '(' stringexpr ')' { addOp(OP_OPEN); } 
