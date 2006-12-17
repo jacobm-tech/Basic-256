@@ -67,7 +67,7 @@ return [Rr][Ee][Tt][Uu][Rr][Nn]
 if    [Ii][Ff]
 then  [Tt][Hh][Ee][Nn]
 rem   [Rr][Ee][Mm].*$
-remalt ;.*$
+remalt #.*$
 dim   [Dd][Ii][Mm]
 end   [Ee][Nn][Dd]
 for   [Ff][Oo][Rr]
