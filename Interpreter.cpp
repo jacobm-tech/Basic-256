@@ -359,6 +359,7 @@ Interpreter::initialize()
   callstack = NULL;
   forstack = NULL;
   fastgraphics = false;
+  pencolor = Qt::black;
   status = R_RUNNING;
   once = true;
   currentLine = 1;
