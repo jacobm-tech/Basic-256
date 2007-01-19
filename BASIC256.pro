@@ -9,6 +9,7 @@ INCLUDEPATH		+=	.
 OBJECTS_DIR		=	tmp/obj
 MOC_DIR			=	tmp/moc
 RESOURCES		+=	resources/resource.qrc
+RC_FILE         =   resources/basic256.rc
 TRANSLATIONS	=	Translations/basic256_en_US.ts \
 		        Translations/basic256_de.ts \
 		        Translations/basic256_nl.ts

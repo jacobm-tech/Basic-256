@@ -24,6 +24,7 @@ using namespace std;
 #include <QStatusBar>
 #include <QDialog>
 #include <QLabel>
+#include <stdio.h>
 
 #include "RunController.h"
 #include "PauseButton.h"
@@ -35,9 +36,10 @@ MainWindow::MainWindow(QWidget * parent, Qt::WindowFlags f)
 {
   QWidget * centerWidget = new QWidget();
   centerWidget->setObjectName( "centerWidget" );
-	
+
   editor = new BasicEdit(this);
   editor->setObjectName( "editor" );
+
 
   output = new BasicOutput();
   output->setObjectName( "output" );

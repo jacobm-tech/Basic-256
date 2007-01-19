@@ -23,6 +23,7 @@ using namespace std;
 #include <QFileDialog>
 #include <QFile>
 #include <QSound>
+#include <QApplication>
 
 #include "RunController.h"
 
@@ -65,7 +66,11 @@ RunController::RunController(MainWindow *mw)
 void
 RunController::playSound(QString soundfile)
 {
-  QSound::play(soundfile);
+  if (soundfile.contains("/") || soundfile.contains("\\")) {
+    QSound::play(soundfile);
+  } else {  
+    QSound::play(qApp->applicationDirPath() + "/" + soundfile);
+  }
 }
 
 void
