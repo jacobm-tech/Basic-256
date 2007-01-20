@@ -1517,17 +1517,22 @@ Interpreter::execByteCode()
     case OP_SOUND:
       {
 	op++;
-	stackval *temp = stack.pop();
+	POP2;
+	int oneval;
+	int twoval;
 	
-	if (temp->type != T_STRING)
+	if (one->type == T_STRING || two->type == T_STRING)
 	  {
-	    printError(tr("Sound file must be a string."));
+	    printError(tr("Sound must have a frequency and duration."));
 	    return -1;
 	  }
+
+	if (one->type == T_INT) oneval = one->value.intval; else oneval = (int) one->value.floatval;
+	if (two->type == T_INT) twoval = two->value.intval; else twoval = (int) two->value.floatval;
 	
-	QString filename = QString(temp->value.string);
-	emit(soundReady(filename));
-	delete temp;
+	emit(soundReady(oneval, twoval));
+	delete one;
+	delete two;
       }
       break;
 	

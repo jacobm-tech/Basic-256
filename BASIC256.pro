@@ -14,6 +14,10 @@ TRANSLATIONS	=	Translations/basic256_en_US.ts \
 		        Translations/basic256_de.ts \
 		        Translations/basic256_nl.ts
 
+win32 {
+DEFINES += WIN32
+}
+
 exists( ./LEX/Makefile ) {
 	message( Running make for ./LEX/Makefile )
 	system( make -C ./LEX )

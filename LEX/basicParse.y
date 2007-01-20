@@ -395,8 +395,8 @@ colorstmt: SETCOLOR COLOR   { addIntOp(OP_SETCOLOR, $2); }
          | SETCOLOR '(' COLOR ')' { addIntOp(OP_SETCOLOR, $3); }
 ;
 
-soundstmt: SOUND '(' stringexpr ')' { addOp(OP_SOUND); }
-         | SOUND stringexpr         { addOp(OP_SOUND); }
+soundstmt: SOUND '(' floatexpr ',' floatexpr ')' { addOp(OP_SOUND); }
+         | SOUND floatexpr ',' floatexpr         { addOp(OP_SOUND); }
 ;
 
 plotstmt: PLOT floatexpr ',' floatexpr { addOp(OP_PLOT); }

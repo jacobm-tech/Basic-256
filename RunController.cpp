@@ -27,6 +27,10 @@ using namespace std;
 
 #include "RunController.h"
 
+#ifdef WIN32
+#include <windows.h>  
+#endif
+
 QMutex mutex;
 QMutex debugmutex;
 QWaitCondition waitCond;
@@ -57,20 +61,20 @@ RunController::RunController(MainWindow *mw)
 
   QObject::connect(i, SIGNAL(goToLine(int)), te, SLOT(goToLine(int)));
 
-  QObject::connect(i, SIGNAL(soundReady(QString)), this, SLOT(playSound(QString)));
+  QObject::connect(i, SIGNAL(soundReady(int, int)), this, SLOT(playSound(int, int)));
 
   QObject::connect(i, SIGNAL(highlightLine(int)), te, SLOT(highlightLine(int)));
   QObject::connect(i, SIGNAL(varAssignment(QString, QString, int)), mainwin->vardock, SLOT(addVar(QString, QString, int)));
 }
 
 void
-RunController::playSound(QString soundfile)
+RunController::playSound(int frequency, int duration)
 {
-  if (soundfile.contains("/") || soundfile.contains("\\")) {
-    QSound::play(soundfile);
-  } else {  
-    QSound::play(qApp->applicationDirPath() + "/" + soundfile);
-  }
+#ifdef WIN32
+  Beep(duration, frequency);
+#else
+  //*nix variants should calculate a sine wave and write it to /dev/dsp
+#endif
 }
 
 void
