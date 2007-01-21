@@ -186,8 +186,8 @@
         <translation>Illegales Argument für instr()</translation>
     </message>
     <message>
-        <source>Sound file must be a string.</source>
-        <translation>Der Klangdateiname muß eine Zeichenkette sein.</translation>
+        <source>Sound must have a frequency and duration.</source>
+        <translation>Sound benötigt eine Frequenz und eine Dauer.</translation>
     </message>
 </context>
 <context>
