@@ -241,6 +241,8 @@ blankline ^{whitespace}*[\n]
 ":"             { return ':'; }
 "("             { return '('; }
 ")"             { return ')'; }
+"{"             { return '{'; }
+"}"             { return '}'; }
 "["             { return '['; }
 "]"             { return ']'; }
 "\n"            { linenumber++; return '\n'; }

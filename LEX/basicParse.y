@@ -37,6 +37,7 @@
     char *byteCode = NULL;
     unsigned int byteOffset = 0;
     unsigned int oldByteOffset = 0;
+    unsigned int listlen = 0;
 
     struct label 
     {
@@ -285,6 +286,8 @@ statement: gotostmt
          | printstmt
          | plotstmt
          | circlestmt
+         | rectstmt
+         | polystmt
          | linestmt
          | numassign
          | stringassign
@@ -359,6 +362,7 @@ strarrayassign: STRINGVAR '[' floatexpr ']' '=' stringexpr { addIntOp(OP_STRARRA
 ;
 
 arrayassign: VARIABLE '[' floatexpr ']' '=' floatexpr { addIntOp(OP_ARRAYASSIGN, $1); }
+           | VARIABLE '=' immediatelist { addInt2Op(OP_ARRAYLISTASSIGN, $1, listlen); listlen = 0; }
 ;
 
 numassign: VARIABLE '=' floatexpr { addIntOp(OP_NUMASSIGN, $1); }
@@ -412,11 +416,11 @@ circlestmt: CIRCLE floatexpr ',' floatexpr ',' floatexpr { addOp(OP_CIRCLE); }
           | CIRCLE '(' floatexpr ',' floatexpr ',' floatexpr ')' { addOp(OP_CIRCLE); }
 ;
 
-circlestmt: RECT floatexpr ',' floatexpr ',' floatexpr ',' floatexpr { addOp(OP_RECT); }
+rectstmt: RECT floatexpr ',' floatexpr ',' floatexpr ',' floatexpr { addOp(OP_RECT); }
           | RECT '(' floatexpr ',' floatexpr ',' floatexpr ',' floatexpr ')' { addOp(OP_RECT); }
 ;
 
-circlestmt: POLY VARIABLE ',' floatexpr { addIntOp(OP_POLY, $2); }
+polystmt: POLY VARIABLE ',' floatexpr { addIntOp(OP_POLY, $2); }
           | POLY '(' VARIABLE ',' floatexpr ')' { addIntOp(OP_POLY, $3); }
           | POLY VARIABLE { addIntOp(OP_POLY, $2); }
           | POLY '(' VARIABLE ')' { addIntOp(OP_POLY, $3); }
@@ -452,6 +456,13 @@ printstmt: PRINT stringexpr { addOp(OP_PRINTN); }
          | PRINT stringexpr ';' { addOp(OP_PRINT); }
          | PRINT '(' stringexpr ')' ';' { addOp(OP_PRINT); }
          | PRINT floatexpr  ';' { addOp(OP_PRINT); }
+;
+
+immediatelist: '{' floatlist '}'
+;
+
+floatlist: floatexpr { listlen = 1; }
+         | floatexpr ',' floatlist { listlen++; }
 ;
 
 floatexpr: '(' floatexpr ')' { $$ = $2; }

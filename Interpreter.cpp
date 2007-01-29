@@ -938,7 +938,39 @@ Interpreter::execByteCode()
 	  }
       }
       break;
+
+    case OP_ARRAYLISTASSIGN:
+      {
+	op++;
+	int *i = (int *) op;
+	int items = i[1];
+	op += 2 * sizeof(int);
+	int index;
+	double val;
+	double *array;
+	
+	if (items >= vars[*i].value.arr->size || items < 0)
+	  {
+	    printError(tr("Array dimension too small"));
+	    return -1;
+	  }
+	
+	array = vars[*i].value.arr->data.fdata;
+	for (index = items - 1; index >= 0; index--)
+	  {
+	    stackval *one = stack.pop();
+	    if (one->type == T_INT) val = (double) one->value.intval; else val = one->value.floatval;
+	    array[index] = val;
+	    delete one;
+	    if(debugMode)
+	      {
+		emit(varAssignment(QString(symtable[*i]), QString::number(val), index));
+	      }
+	  }
+      }
+      break;
     
+
     case OP_DEREF:
       {
 	op++;
