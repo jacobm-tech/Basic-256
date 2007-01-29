@@ -424,6 +424,7 @@ polystmt: POLY VARIABLE ',' floatexpr { addIntOp(OP_POLY, $2); }
           | POLY '(' VARIABLE ',' floatexpr ')' { addIntOp(OP_POLY, $3); }
           | POLY VARIABLE { addIntOp(OP_POLY, $2); }
           | POLY '(' VARIABLE ')' { addIntOp(OP_POLY, $3); }
+          | POLY immediatelist { addIntOp(OP_POLY, listlen); listlen=0; }
 ;
 
 openstmt: OPEN '(' stringexpr ')' { addOp(OP_OPEN); } 
