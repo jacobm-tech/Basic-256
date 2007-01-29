@@ -17,6 +17,7 @@
 
 
 using namespace std;
+#include <iostream>
 
 #include <QApplication>
 #include <QGridLayout>
@@ -39,7 +40,6 @@ MainWindow::MainWindow(QWidget * parent, Qt::WindowFlags f)
 
   editor = new BasicEdit(this);
   editor->setObjectName( "editor" );
-
 
   output = new BasicOutput();
   output->setObjectName( "output" );
@@ -218,6 +218,7 @@ MainWindow::MainWindow(QWidget * parent, Qt::WindowFlags f)
   addDockWidget(Qt::RightDockWidgetArea, tdock);
   addDockWidget(Qt::RightDockWidgetArea, gdock);  
   addDockWidget(Qt::LeftDockWidgetArea, vardock);  
+  setContextMenuPolicy(Qt::NoContextMenu);
 }
 
 MainWindow::~MainWindow()
