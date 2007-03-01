@@ -1,0 +1,9 @@
+
+To compile, you'll need the open source version of QT4, GNU flex and bison, and the mingw c++ compiler for Win32 or GCC on Unix. 
+
+open a command window (cmd)
+type "qmake" and hit enter
+type "make" and hit enter 
+
+You'll see an executable called BASIC256 either in this directory or in a "debug" directory, depending on your version of QT.
+
