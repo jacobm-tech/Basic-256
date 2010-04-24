@@ -16,7 +16,7 @@
  **/
 
 
-using namespace std;
+
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -29,6 +29,8 @@ using namespace std;
 #include <QTime>
 #include <QMutex>
 #include <QWaitCondition>
+using namespace std;
+
 #include "LEX/basicParse.tab.h"
 #include "ByteCodes.h"
 #include "Interpreter.h"
@@ -2264,7 +2266,7 @@ Interpreter::execByteCode()
 				}
 
 				double *array = vars[*i].value.arr->data.fdata;
-				QPointF points[pairs];
+				QPointF *points = new QPointF[pairs];
 
 				for (int j = 0; j < pairs; j++)
 				{
@@ -2272,14 +2274,15 @@ Interpreter::execByteCode()
 					points[j].setY(array[(j*2)+1]);
 				}
 				poly.drawPolygon(points, pairs);
+				poly.end();
+				delete points;
 			} 
 			else
 			{
 				printError(tr("Argument not an array for poly()"));
+				poly.end();
 				return -1;
 			}
-
-			poly.end();
 
 			if (!fastgraphics) waitForGraphics();
 		}
@@ -2303,7 +2306,7 @@ Interpreter::execByteCode()
 				printError(tr("Not enough points in immediate list for poly()"));
 				return -1;
 			}
-			QPointF points[pairs];
+			QPointF *points = new QPointF[pairs];
 			for (int j = 0; j < pairs; j++)
 			{
 				int ypoint = stack.popint();
@@ -2312,10 +2315,10 @@ Interpreter::execByteCode()
 				points[j].setY(ypoint);
 			}
 			poly.drawPolygon(points, pairs);
-				
 			poly.end();
 
 			if (!fastgraphics) waitForGraphics();
+			delete points;
 		}
 		break;
 
@@ -2348,7 +2351,7 @@ Interpreter::execByteCode()
 				}
 
 				double *array = vars[*i].value.arr->data.fdata;
-				QPointF points[pairs];
+				QPointF *points = new QPointF[pairs];
 
 				for (int j = 0; j < pairs; j++)
 				{
@@ -2360,14 +2363,15 @@ Interpreter::execByteCode()
 					points[j].setY(roty + y);
 				}
 				poly.drawPolygon(points, pairs);
+				poly.end();
+				delete points;
 			} 
 			else
 			{
 				printError(tr("Argument not an array for stamp()"));
+				poly.end();
 				return -1;
 			}
-
-			poly.end();
 
 			if (!fastgraphics) waitForGraphics();
 		}
@@ -2418,7 +2422,7 @@ Interpreter::execByteCode()
 				printError(tr("Not enough points in immediate list for stamp()"));
 				return -1;
 			}
-			QPointF points[pairs];
+			QPointF *points = new QPointF[pairs];
 			for (int j = 0; j < pairs; j++)
 			{
 				double scalex = scale * list[(j*2)];
@@ -2429,10 +2433,11 @@ Interpreter::execByteCode()
 				points[j].setY(roty + y);
 			}
 			poly.drawPolygon(points, pairs);
-			
+
 			poly.end();
 			
 			if (!fastgraphics) waitForGraphics();
+			delete points;
 		}
 		break;
 

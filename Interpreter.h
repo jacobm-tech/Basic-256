@@ -23,7 +23,13 @@
 #include <QThread>
 #include <QFile>
 #include <stdio.h>
+#include <cmath>
 #include "BasicGraph.h"
+
+#ifndef M_PI
+#define M_PI 3.14159265
+#endif
+
 
 enum run_status {R_STOPPED, R_RUNNING, R_INPUT, R_INPUTREADY, R_ERROR, R_PAUSED};
 enum b_type {T_INT, T_FLOAT, T_STRING, T_BOOL, T_ARRAY, T_STRARRAY, T_UNUSED};

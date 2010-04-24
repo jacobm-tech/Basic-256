@@ -12,18 +12,19 @@ MOC_DIR			=	tmp/moc
 RESOURCES		+=	resources/resource.qrc
 RC_FILE         =   resources/basic256.rc
 TRANSLATIONS	=	Translations/basic256_en_US.ts \
-		        	Translations/basic256_de.ts \
-		        	Translations/basic256_ru_RU.ts \
-		        	Translations/basic256_sp.ts \
-		        	Translations/basic256_nl.ts
+		        Translations/basic256_de.ts \
+		        Translations/basic256_ru_RU.ts \
+		        Translations/basic256_sp.ts \
+		        Translations/basic256_nl.ts
 
 win32 {
 	# use SAPI for speech
 	DEFINES 		+= WIN32
+	#INCLUDEPATH		+= "C:\Program Files (x86)\Microsoft Speech SDK 5.1\Include"
+    #    LIBS  		        += -L"C:\Program Files (x86)\Microsoft Speech SDK 5.1\Lib\i386"
 	LIBS			+= -lole32 \
 					-lsapi \
-					-lwinmm \
-					-lm
+					-lwinmm
 } else {
 	## for the SAY command (LINUX) you need to choose one TTS engine - uncomment the one desired
 	## espeak library (causes problems with sound statement in 0.9.5i under ubuntu 9.10 - suggest flite)
@@ -45,6 +46,7 @@ exists( ./LEX/Makefile ) {
 	message( Running make for ./LEX/Makefile )
 	system( make -C ./LEX )
 }
+
 else { 
 	error( Couldn't make LEX project - aborting... )
 }

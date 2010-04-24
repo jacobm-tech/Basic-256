@@ -5,10 +5,10 @@ fastgraphics
 x = 30 
 y = 280 
 ballx = 30 
-bally = 0 
-ballxinc = 5 
-ballyinc = 5 
-xinc = 5 
+bally = 10 
+ballxinc = 1
+ballyinc = 1
+xinc = 2
 speed = .04	## make speed smaller to play faster
 
 loop1: 
@@ -47,7 +47,7 @@ checkball:
 if ballx < x - 3 then goto missed 
 if ballx > (x + 103) then goto missed 
 ballyinc = -ballyinc 
-ballxinc = ((ballx - x) - 50) / 10 
+ballxinc = ((ballx - x) - 50) / 25
 return 
 
 missed: 
