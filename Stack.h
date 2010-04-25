@@ -3,19 +3,15 @@
 enum b_type {T_INT, T_FLOAT, T_STRING, T_BOOL, T_ARRAY, T_STRARRAY, T_UNUSED};
 
 
-class stackval
+typedef struct
 {
- public:
-  stackval *next;
   b_type type;
   union {
     char *string;
     int intval;
     double floatval; 
   } value;
-  stackval();
-  ~stackval();
-};
+} stackval;
 
 
 class Stack
@@ -31,7 +27,13 @@ class Stack
   int popint();
   double popfloat();
   char *popstring();
-  
+  void clean(stackval *);
+  void clear();
+
  private:
+  static const int initialSize = 64;
   stackval *top;
+  stackval *bottom;
+  stackval *limit;
+  void checkLimit();
 };

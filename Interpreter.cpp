@@ -303,7 +303,6 @@ Interpreter::initialize()
 	fontfamily = QString::QString();
 	fontpoint = 0;
 	fontweight = 0;
-
 }
 
 
@@ -311,13 +310,8 @@ void
 Interpreter::cleanup()
 {
 	status = R_STOPPED;
-	stackval *temp = stack.pop();
 	//Clean up stack
-	while (temp != NULL)
-	{
-		delete temp;
-		temp = stack.pop();
-	}
+	stack.clear();
 	//Clean up variables
 	clearvars();
 	//Clean up, for frames, etc.
@@ -396,8 +390,6 @@ Interpreter::execByteCode()
 	{
 		return 0;
 	}
-
-	emit(outputReady(QString::number(sizeof(stackval)) + QString("\n")));
 
 	while (*op == OP_CURRLINE)
 	{
@@ -1633,6 +1625,10 @@ Interpreter::execByteCode()
 			double oneval, twoval;
 			if (one->type == T_STRING || two->type == T_STRING)
 			{
+				if (one->type == T_STRING)
+					free(one->value.string);
+				if (two->type == T_STRING)
+					free(two->value.string);
 				printError(tr("String in numeric expression"));
 				return -1;
 			}
@@ -1701,8 +1697,8 @@ Interpreter::execByteCode()
 				}
 			}
 			op++;
-			delete one;
-			delete two;
+			stack.clean(one);
+			stack.clean(two);
 		}
 		break;
 
@@ -1781,7 +1777,6 @@ Interpreter::execByteCode()
 			{
 				stack.push(-temp->value.floatval);
 			}
-			delete temp;
 		}
 		break;
 
@@ -1793,8 +1788,8 @@ Interpreter::execByteCode()
 				stack.push(1);
 			else
 				stack.push(0);
-			delete one;
-			delete two;
+			stack.clean(one);
+			stack.clean(two);
 		}
 		break;
 
@@ -1806,8 +1801,8 @@ Interpreter::execByteCode()
 				stack.push(1);
 			else
 				stack.push(0);
-			delete one;
-			delete two;
+			stack.clean(one);
+			stack.clean(two);
 		}
 		break;
 
@@ -1819,8 +1814,8 @@ Interpreter::execByteCode()
 				stack.push(1);
 			else
 				stack.push(0);
-			delete one;
-			delete two;
+			stack.clean(one);
+			stack.clean(two);
 		}
 		break;
 
@@ -1832,8 +1827,8 @@ Interpreter::execByteCode()
 				stack.push(1);
 			else
 				stack.push(0);
-			delete one;
-			delete two;
+			stack.clean(one);
+			stack.clean(two);
 		}
 		break;
 
@@ -1845,8 +1840,8 @@ Interpreter::execByteCode()
 				stack.push(1);
 			else
 				stack.push(0);
-			delete one;
-			delete two;
+			stack.clean(one);
+			stack.clean(two);
 		}
 		break;
 
@@ -1858,8 +1853,8 @@ Interpreter::execByteCode()
 				stack.push(1);
 			else
 				stack.push(0);
-			delete one;
-			delete two;
+			stack.clean(one);
+			stack.clean(two);
 		}
 		break;
 
@@ -2442,18 +2437,16 @@ Interpreter::execByteCode()
 	case OP_PRINTN:
 		{
 			char *temp = stack.popstring();
-			mutex.lock();
-			emit(outputReady(QString(temp)));
-			waitCond.wait(&mutex);
-			mutex.unlock();
+			QString p = QString(temp);
+			free(temp);
 			if (*op == OP_PRINTN)
 			{
-				mutex.lock();
-				emit(outputReady(QString("\n")));
-				waitCond.wait(&mutex);
-				mutex.unlock();
+				p += "\n";
 			}
-			free(temp);
+			mutex.lock();
+			emit(outputReady(p));
+			waitCond.wait(&mutex);
+			mutex.unlock();
 			op++;
 		}
 		break;

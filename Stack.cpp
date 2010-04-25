@@ -1,172 +1,182 @@
 #include "Stack.h"
 #include <string>
 
-stackval::stackval()
-{
-	next = NULL;
-	type = T_UNUSED;
-	value.floatval = 0;
-}
-
-stackval::~stackval()
-{
-	if (type == T_STRING && value.string != NULL)
-	{
-		free(value.string);
-		value.string = NULL;
-	}
-}
-
 Stack::Stack()
 {
-	top = NULL;
+	top = bottom = (stackval *) malloc (sizeof(stackval) * initialSize);
+	limit = bottom + initialSize;
+	top->type = T_UNUSED;
+	top->value.floatval = 0;
 }
 
 Stack::~Stack()
 {
+	free(bottom);
+}
+
+
+void
+Stack::clear()
+{
+	while (top > bottom)
+	{
+		if (top->type == T_STRING)
+		{
+			free(top->value.string);
+		}
+		top--;
+	}
+	top->type = T_UNUSED;
+	top->value.floatval = 0;
+}
+
+void
+Stack::checkLimit()
+{
+	while (top + 1 >= limit)
+	{
+		limit += limit - bottom;
+		stackval *newbottom = (stackval *) realloc(bottom, sizeof(stackval) * (limit - bottom));
+		if (!newbottom)
+		{
+			exit(1);
+		}
+		int diff = newbottom - bottom;
+		bottom = newbottom;
+		top += diff;
+		limit += diff;
+	}
 }
 
 void
 Stack::push(char *c)
 {
-	stackval *temp = new stackval;
-
-	temp->next = NULL;
-	temp->type = T_STRING;
-	temp->value.string = strdup(c);
-	if (top)
-	{
-		temp->next = top;
-	}
-	top = temp;
+	checkLimit();
+	top++;
+	top->type = T_STRING;
+	top->value.string = strdup(c);
 }
 
 void
 Stack::push(int i)
 {
-	stackval *temp = new stackval;
-
-	temp->next = NULL;
-	temp->type = T_INT;
-	temp->value.intval = i;
-	if (top)
-	{
-		temp->next = top;
-	}
-	top = temp;
+	checkLimit();
+	top++;
+	top->type = T_INT;
+	top->value.intval = i;
 }
 
 void
 Stack::push(double d)
 {
-	stackval *temp = new stackval;
-
-	temp->next = NULL;
-	temp->type = T_FLOAT;
-	temp->value.floatval = d;
-	if (top)
-	{
-		temp->next = top;
-	}
-	top = temp;
+	checkLimit();
+	top++;
+	top->type = T_FLOAT;
+	top->value.floatval = d;
 }
 
 stackval *
 Stack::pop()
 {
 	stackval *temp = top;
-	if (top)
-	{
-		top = top->next;
-	}
+	top--;
 	return temp;
 }
 
-void Stack::swap()
+void
+Stack::clean(stackval *sv)
 {
-	// swap top two elements
-	stackval *one = top;
-	top = top->next;
-	stackval *two = top;
-	top = top->next;
-	one->next = top;
-	two->next = one;
-	top = two;
+	if (sv->type == T_STRING)
+	{
+		free(sv->value.string);
+	}
 }
 
-int Stack::popint()
+void 
+Stack::swap()
 {
-	stackval *temp = top;
+	// swap top two elements
+	stackval temp;
+	stackval *two = top - 1;
+	
+	temp.type = two->type;
+	temp.value = two->value;
+	
+	two->type = top->type;
+	two->value = top->value;
+
+	top->type = temp.type;
+	top->value = temp.value;
+}
+
+int 
+Stack::popint()
+{
 	int i=0;
-	if (top) {
-		top = top->next;
+	if (top->type == T_INT) {
+		i = top->value.intval;
 	}
-	if (temp->type == T_INT) {
-		i = temp->value.intval;
+	else if (top->type == T_FLOAT) {
+		i = (int) top->value.floatval;
 	}
-	else if (temp->type == T_FLOAT) {
-		i = (int) temp->value.floatval;
-	}
-	else if (temp->type == T_STRING)
+	else if (top->type == T_STRING)
 	{
-		i = (int) atoi(temp->value.string);
+		i = (int) atoi(top->value.string);
+		free(top->value.string);
 	}
-	delete temp;
+	top->type = T_UNUSED;
+	if (top > bottom) top--;
 	return i;
 }
 
-double Stack::popfloat()
+double 
+Stack::popfloat()
 {
-	stackval *temp = top;
 	double f=0;
-	if (top)
+	if (top->type == T_FLOAT) {
+		f = top->value.floatval;
+	}
+	else if (top->type == T_INT)
 	{
-		top = top->next;
+		f = (double) top->value.intval;
 	}
-	if (temp->type == T_FLOAT) {
-		f = temp->value.floatval;
-	}
-	else if (temp->type == T_INT)
+	else if (top->type == T_STRING)
 	{
-		f = (double) temp->value.intval;
+		f = (double) atof(top->value.string);
+		free(top->value.string);
+		top->value.string = NULL;
 	}
-	else if (temp->type == T_STRING)
-	{
-		f = (double) atof(temp->value.string);
-	}
-	delete temp;
+	top->type = T_UNUSED;
+	if (top > bottom) top--;
 	return f;
 }
 
-char* Stack::popstring()
+char* 
+Stack::popstring()
 {
-	// don't forget to free() the string returned by this function when you are dome with it
+	// don't forget to free() the string returned by this function when you are done with it
 	char *s=NULL;
-	stackval *temp = top;
-	if (top)
-	{
-		top = top->next;
+	if (top->type == T_STRING) {
+		s = top->value.string;
+		top->value.string = NULL;
 	}
-	if (temp->type == T_STRING) {
-		s = temp->value.string;
-		temp->value.string = NULL;		// set to null so we don't destroy string when stack value is destructed
-	}
-	else if (temp->type == T_INT)
+	else if (top->type == T_INT)
 	{
 		char buffer[64];
-		sprintf(buffer, "%d", temp->value.intval);
+		sprintf(buffer, "%d", top->value.intval);
 		s = strdup(buffer);
 	}
-	else if (temp->type == T_FLOAT)
+	else if (top->type == T_FLOAT)
 	{
 		char buffer[64];
-		sprintf(buffer, "%#lf", temp->value.floatval);
+		sprintf(buffer, "%#lf", top->value.floatval);
 		// strip trailing zeros and decimal point
 		while(buffer[strlen(buffer)-1]=='0') buffer[strlen(buffer)-1] = 0x00;
 		if(buffer[strlen(buffer)-1]=='.') buffer[strlen(buffer)-1] = 0x00;
 		// return
 		s = strdup(buffer);
 	}
-	delete temp;
+	top->type = T_UNUSED;
+	if (top > bottom) top--;
 	return s;
 }
