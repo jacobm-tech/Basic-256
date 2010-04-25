@@ -66,8 +66,6 @@ struct byteCodeData
 };
 
 
-
-
 struct frame {
   frame *next;
   unsigned char *returnAddr;
