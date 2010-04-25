@@ -68,6 +68,7 @@ HEADERS			+=	MainWindow.h
 HEADERS			+=	VariableWin.h
 HEADERS			+=	Version.h
 HEADERS			+=	EditSyntaxHighlighter.h
+HEADERS         +=  Stack.h
 
 SOURCES 		+= 	LEX/lex.yy.c 
 SOURCES 		+= 	LEX/basicParse.tab.c 
@@ -86,3 +87,4 @@ SOURCES			+=	ViewWidgetIFace.cpp
 SOURCES			+=	MainWindow.cpp
 SOURCES			+=	VariableWin.cpp
 SOURCES			+=	EditSyntaxHighlighter.cpp
+SOURCES			+=  Stack.cpp

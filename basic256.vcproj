@@ -114,6 +114,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Stack.h"
+				>
+			</File>
+			<File
 				RelativePath=".\ToolBar.h"
 				>
 			</File>
@@ -195,6 +199,10 @@
 			</File>
 			<File
 				RelativePath=".\RunController.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Stack.cpp"
 				>
 			</File>
 			<File
