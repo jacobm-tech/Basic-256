@@ -397,6 +397,8 @@ Interpreter::execByteCode()
 		return 0;
 	}
 
+	emit(outputReady(QString::number(sizeof(stackval)) + QString("\n")));
+
 	while (*op == OP_CURRLINE)
 	{
 		op++;

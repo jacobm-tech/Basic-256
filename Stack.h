@@ -2,6 +2,7 @@
 
 enum b_type {T_INT, T_FLOAT, T_STRING, T_BOOL, T_ARRAY, T_STRARRAY, T_UNUSED};
 
+
 class stackval
 {
  public:
